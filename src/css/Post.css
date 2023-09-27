@@ -5,17 +5,19 @@
     background-color: white;
     border-radius: 3px;
     margin-top: 10px;
+
 }
 
 .post_info{
     display: flex;
     padding: 10px;
     border-bottom: solid lightgray 1px;
+    align-items: center;
 }
 .post_info span{
     margin:0 10px;
     text-align: left;
-    width: 60%;
+    width: 70%;
 }
 .post_info h4{
     font-size: 10px;
@@ -26,7 +28,7 @@
 }
 .post_info small{
     font-size: 10px;
-    color: #B92B27;
+    color: #4D16BE;
 }
 
 .post_body{
@@ -53,7 +55,7 @@
     background-color: #F7F7F7;
 }
 .post_footer button:hover{
-    background-color: #B92B27;
+    background-color: #4D16BE;
     color: white;
 }
 .post_body .imgbox{
@@ -73,23 +75,17 @@
 .post_footer{
     display: flex;
     justify-content: space-between;
+    border-top: solid lightgrey 1px;
     margin:5px 0;
-    padding: 2px 10px;
+    padding: 5px 10px 0px 10px;
 }
-.post_footer span{
-    border: solid lightgrey 1px;
-    background-color: #F7F7F7;
-    border-radius: 30px;
-}
-.post_footer span:hover{
-    background-color:#EFEFEF ;
-}
+
+
 .actions {
     display: flex;
     justify-content: space-evenly;
     border-radius: 30px;
     align-items: center;
-
 }
 .actions a{
     margin-right:3px ;
@@ -99,19 +95,18 @@
     cursor: pointer;
 }
 
-.actions svg:hover{
-    fill: #B92B27;
-}
+
 .show_answer{
     margin-left: 5px;
+    border:solid lightgray 1px
 }
 .show_answer small{
     border-radius: 100%;
     font-size: 11px;
-    color: #B92B27;
+    color: #4D16BE;
 }
 .show_answer:hover{
-    background-color: #F7F7F7;
+    background-color: #e5e5e5;
 
 }
 .actions svg{
@@ -119,7 +114,9 @@
     padding: 0;
     width: fit-content;
 }
-
+.actions svg:hover{
+    fill: #4D16BE;
+}
 .more {
     display: flex;
     justify-content: space-evenly;
@@ -130,22 +127,25 @@
     margin-right:3px ;
     border-radius: 30px;
     height: fit-content;
-    padding: 0 15px;
-    border: solid lightgrey 1px;
+    padding: 0 10px;
+    border: solid lightgray 1px;
+
 }
+
 .more a:hover{
-    background-color: #F7F7F7;
+    background-color: #e5e5e5;
 }
 
 .more svg{
     height: 15px;
 }
 .more svg:hover{
-    fill: #B92B27;
+    fill: #4D16BE;
 }
 
 .answers{
     border-top: solid lightgray 1px;
+    box-shadow: rgb(215, 215, 215) 0px 3px 6px 0px inset;
 }
 .answers .avatar{
     width: 20px;
@@ -159,7 +159,7 @@
 .answer_info span{
     margin:0 10px;
     text-align: left;
-    width: 60%;
+    width: 70%;
     font-size: 9px;
 }
 
@@ -168,7 +168,7 @@
 }
 .answer_info small{
     font-size: 10px;
-    color: #B92B27;
+    color: #4D16BE;
 }
 
 .answer_body{
@@ -181,7 +181,6 @@
 .answer_body p{
     padding: 0 10px;
     font-size: 12px;
-    font-weight: bold;
     color: #282829;
 }
 .modal_question h1{

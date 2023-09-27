@@ -61,7 +61,7 @@ function Navbar() {
     <div className="Navbar">
       <div className="nav-content">
         <div className="logo">
-          <a href="#">CampusQueries</a>
+          <a href="#">¿CampusQueries?</a>
         </div>
         <div className="nav-icons">
           <div className="nav-icon">

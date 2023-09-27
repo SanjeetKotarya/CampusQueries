@@ -113,7 +113,7 @@ function Post({ id, question, image, time, quoraUser,searchQuery  }) {
           <h4>{quoraUser?.userName}</h4>
           <p>{quoraUser?.email}</p>
         </span>
-        <small>{time?.toDate().toLocaleString()}</small>
+        <small>{time?.toDate().toLocaleDateString()}</small>
       </div>
       <div className="post_body">
         <p>{question}</p>
@@ -187,7 +187,7 @@ function Post({ id, question, image, time, quoraUser,searchQuery  }) {
                       <p>{answers.user?.email}</p>
                     </span>
                     <small>
-                      {answers.timestamp?.toDate().toLocaleString()}
+                      {answers.timestamp?.toDate().toLocaleDateString()}
                     </small>
                   </div>
                   <div className="answer_body">
@@ -221,7 +221,7 @@ function Post({ id, question, image, time, quoraUser,searchQuery  }) {
               <h4>{quoraUser?.userName}</h4>
               <p>{quoraUser?.email}</p>
             </span>
-            <small>{time?.toDate().toLocaleString()}</small>
+            <small>{time?.toDate().toLocaleDateString()}</small>
           </div>
         </div>
         <div className="modal_answer">
