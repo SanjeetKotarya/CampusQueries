@@ -65,7 +65,7 @@ function Feed() {
           />
         ))
       ) : filteredPosts.length === 0 ? ( // Show message when no matching posts
-        <p>Sorry, no posts match your query.</p>
+        <p className="sorry">Sorry, no posts match your query.</p>
       ) : (
         filteredPosts.map(({ id, question }) => (
           <Post

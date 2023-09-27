@@ -11,3 +11,9 @@
         overflow-x: hidden;
     }
   }
+  .sorry{
+    border-radius: 30px;
+    width: fit-content;
+    color: #4D16BE;
+    margin: 20px auto;
+  }
