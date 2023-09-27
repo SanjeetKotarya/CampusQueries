@@ -1,0 +1,30 @@
+.quorabox {
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 3px;
+  border: solid lightgray 1px;
+  padding: 10px 0;
+  z-index: 200;
+}
+@media screen and (max-width: 768px) {
+  .quorabox {
+    position: fixed;
+    margin-top: -48px;
+    width: 100%;
+  }
+}
+.search-input input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+.search-input {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 25px; /* Adjust the border-radius to control the roundness of the input */
+  padding: 3px 10px;
+  font-size: 12px;
+}

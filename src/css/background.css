@@ -1,0 +1,16 @@
+/* CSS for VideoBackground component */
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2; /* Place it behind other content */
+  }
+  
+  .video-background video {
+    object-fit: cover; /* Ensure the video covers the entire container */
+    width: 100%;
+  
+}
+  

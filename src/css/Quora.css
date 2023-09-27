@@ -1,0 +1,40 @@
+.quora{
+    height: 92vh;
+}
+
+.quora-content{
+    display: flex;
+    justify-content: space-between;
+    width:fit-content;
+    margin-bottom: 0;
+    height: 92vh;
+    width: 60%;
+}
+@media screen and (max-width: 768px) {
+    .quora-content {
+        display: block;
+        width: 100%;
+        margin: 96px auto;
+
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .quora-content {
+        margin: 48px auto;
+    }
+  }
+.react-responsive-modal-modal{
+border-radius: 5px;
+padding:0;
+min-width: 40%;
+position: relative;
+min-height: 350px;
+max-height: 80vh;
+}
+.react-responsive-modal-overlay{
+    background: rgb(0 0 0 / 75%);
+}
+.quill{
+    height: 100%;
+    width: 100%;
+}

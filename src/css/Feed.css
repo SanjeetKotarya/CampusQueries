@@ -1,0 +1,13 @@
+.feed{
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+
+  @media screen and (min-width: 768px) {
+    .feed {
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+  }

@@ -1,0 +1,253 @@
+.Navbar{
+    width: 100%;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.5);
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 500;
+}
+.logout-text{
+  position: absolute;
+  background-color: black;
+  color: white;
+  border-radius: 30px;
+  padding: 5px 10px;
+  top: 45px;
+  margin-left: -10px;
+  font-size: 10px;
+  transition: 2s ease-in-out;
+
+}
+
+.nav-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  width: 100%;
+  margin: 0 auto;
+  position: sticky;
+  z-index: 1000;
+  top: 0;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+.nav-icons .nav-icon {
+  margin-right: 5px;
+  padding: 5px 10px;
+  fill: #636466;
+}
+
+.nav-icons .nav-icon:hover {
+    background-color: #f7f7f8;
+    fill: #b92b27;
+
+}
+.nav-input svg{
+    fill: #555; /* Icon color */
+}
+
+
+.nav-content .logo a {
+  color: #b92b27;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 22px;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.avatar:hover{
+  border: solid #b92b27 2px;
+}
+
+.user button {
+  border-radius: 30px;
+  color: white;
+  padding: 8px 10px;
+  outline: none;
+  cursor: pointer;
+  font-size: 12px;
+  border: none;
+  background-color: #b92b27;
+}
+.user button:hover{
+    background-color: #890703;
+}
+
+.avatar{
+  width: 30px;
+  cursor: pointer;
+  height: 30px;
+  margin-right: 5px;
+  border-radius: 100%;
+  border: solid lightgrey 2px;
+  overflow: hidden;
+}
+.avatar img{
+width: 100%;
+}
+
+.modal_title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(187, 187, 187, 0.5);
+}
+
+.modal_title h5 {
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  border-bottom: solid transparent 2px;
+
+}
+
+.modal_title h5:hover {
+  border-bottom: solid #2E69FF 2px;
+}
+
+.modal_info {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.modal_info > p {
+  margin-left: 10px;
+  font-size: small;
+  color: gray;
+}
+
+.modal_field {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  height: fit-content;
+  flex: 1;
+}
+.imgbox{
+  text-align: center;
+  overflow-y: scroll;
+  height: 40vh;
+  margin-bottom: 25px;
+  border-bottom: solid lightgray 1px;
+}
+
+.modal_field .imgbox img{
+  margin: 0 auto;
+  height: auto;
+  width: 60%;
+}
+
+.modal_field textarea {
+  flex: 1;
+  border: none;
+  outline: none;
+  border-bottom: solid lightgray 1px;
+  font-family: Arial, sans-serif;
+  transition: .3s ease-in-out;
+  width: 100%;
+}
+.modal_field textarea:hover{
+  border-color: #2E69FF;
+}
+.modal_field input{
+  outline: none;
+  border: none;
+  padding: 5px;
+  border-radius: 20px;
+  border: solid lightgray 1px;
+  margin: 10px 0;
+}
+
+.modal_scop{
+  display: flex;
+  border-radius: 30px;
+  border: solid #E0E0E0 1px;
+  font-size: 12px;
+  padding: 2px 5px;
+  color: #636466;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color:white;
+  cursor: pointer;
+}
+.modal_scop:hover{
+  background-color: #F7F7F7;
+}
+.modal_scop svg{
+  width: 16px;
+  fill: #636466;
+  margin: 0 5px;
+}
+
+.modal_buttons {
+  display: flex;
+  margin-top: 10px;
+  padding-top: 5px;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+.cancel {
+  border: none;
+  outline: none;
+  background-color: white;
+  border-radius: 30px;
+  font-size: 12px;
+  color: #636466;
+  cursor: pointer;
+  padding:7px 10px;
+}
+.cancel:hover{
+  background-color: #F7F7F7;
+}
+.add{
+  padding:7px 10px;
+  background-color: #2E69FF;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+  font-size: 12px;
+}
+.add:hover{
+  background-color: #1A5AFF;
+}
+
+@media screen and (max-width: 768px) {
+
+  .nav-content {
+    justify-content: space-between;
+  }
+
+  .nav-content .logo a {
+    margin-right: 10px;
+    font-size: 18px;
+  }
+  .user button {
+    border-radius: 30px;
+    color: white;
+    padding:5px;
+    font-size: 11px;
+  }
+}

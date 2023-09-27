@@ -1,0 +1,203 @@
+.post{
+    display: flex;
+    flex-direction: column;
+    border: solid lightgray 1px;
+    background-color: white;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+.post_info{
+    display: flex;
+    padding: 10px;
+    border-bottom: solid lightgray 1px;
+}
+.post_info span{
+    margin:0 10px;
+    text-align: left;
+    width: 60%;
+}
+.post_info h4{
+    font-size: 10px;
+}
+.post_info p{
+    font-size: 10px;
+    color: gray;
+}
+.post_info small{
+    font-size: 10px;
+    color: #B92B27;
+}
+
+.post_body{
+    text-align: left;
+    position: relative;
+    height: fit-content;
+}
+
+.post_body p{
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #282829;
+}
+.post_footer button{
+    outline: none;
+    border: none;
+    border-radius: 30px;
+    border: solid lightgray 1px;
+    padding: 4px 10px;
+    cursor: pointer;
+    bottom: 5px;
+    font-size: 12px;
+    background-color: #F7F7F7;
+}
+.post_footer button:hover{
+    background-color: #B92B27;
+    color: white;
+}
+.post_body .imgbox{
+    margin-top: 5px;
+    overflow: hidden;
+    position: relative;
+    height: 300px;
+}
+.post_body .imgbox img{
+    width: auto;
+    height: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    border: none;
+}
+
+.post_footer{
+    display: flex;
+    justify-content: space-between;
+    margin:5px 0;
+    padding: 2px 10px;
+}
+.post_footer span{
+    border: solid lightgrey 1px;
+    background-color: #F7F7F7;
+    border-radius: 30px;
+}
+.post_footer span:hover{
+    background-color:#EFEFEF ;
+}
+.actions {
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 30px;
+    align-items: center;
+
+}
+.actions a{
+    margin-right:3px ;
+    border-radius: 30px;
+    height: fit-content;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.actions svg:hover{
+    fill: #B92B27;
+}
+.show_answer{
+    margin-left: 5px;
+}
+.show_answer small{
+    border-radius: 100%;
+    font-size: 11px;
+    color: #B92B27;
+}
+.show_answer:hover{
+    background-color: #F7F7F7;
+
+}
+.actions svg{
+    height: 15px;
+    padding: 0;
+    width: fit-content;
+}
+
+.more {
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 30px;
+
+}
+.more a{
+    margin-right:3px ;
+    border-radius: 30px;
+    height: fit-content;
+    padding: 0 15px;
+    border: solid lightgrey 1px;
+}
+.more a:hover{
+    background-color: #F7F7F7;
+}
+
+.more svg{
+    height: 15px;
+}
+.more svg:hover{
+    fill: #B92B27;
+}
+
+.answers{
+    border-top: solid lightgray 1px;
+}
+.answers .avatar{
+    width: 20px;
+    height: 20px;
+}
+.answer_info{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
+.answer_info span{
+    margin:0 10px;
+    text-align: left;
+    width: 60%;
+    font-size: 9px;
+}
+
+.answer_info span p{
+    color: gray;
+}
+.answer_info small{
+    font-size: 10px;
+    color: #B92B27;
+}
+
+.answer_body{
+    text-align: left;
+    position: relative;
+    border-bottom: solid lightgray 1px;
+    padding-bottom: 10px;
+}
+
+.answer_body p{
+    padding: 0 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #282829;
+}
+.modal_question h1{
+    font-size: 16px;
+    font-weight: 0;
+}
+
+.modal_question p{
+    font-size: 10px;
+    color: gray;
+}
+.modal_answer textarea{
+    border: none;
+    border-bottom:solid lightgray 1px;
+    outline: none;
+    width: 100%;
+}
+
+
