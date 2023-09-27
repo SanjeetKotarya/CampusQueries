@@ -18,6 +18,7 @@
 .search-input input {
   border: none;
   outline: none;
+  background-color: transparent;
   width: 100%;
 }
 .search-input {
