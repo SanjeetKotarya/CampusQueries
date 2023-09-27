@@ -11,7 +11,7 @@
 @media screen and (max-width: 768px) {
   .quorabox {
     position: fixed;
-    margin-top: -48px;
+    margin-top: -49px;
     width: 100%;
   }
 }
