@@ -17,7 +17,8 @@ function Auth() {
     <div className="login">
       <div className="login__container">
         <div className="login__logo">
-          <h1>QuoraIITM</h1>
+          <h1>CampusQueries</h1>
+          <h6>IITM</h6>
         </div>
         <div className="login__desc">
           <p>A Place to Share knowledge and better understand the world</p>
