@@ -198,5 +198,8 @@
     outline: none;
     width: 100%;
 }
+.modal_question .post_info{
+    padding: 10px 0;
+}
 
 
