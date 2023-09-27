@@ -253,4 +253,8 @@ width: 100%;
   .nav-icons{
     display: none;
   }
+  .Navbar{
+    width: 100%;
+    box-shadow: none;
+}
 }
