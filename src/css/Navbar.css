@@ -220,7 +220,7 @@ width: 100%;
   background-color: #F7F7F7;
 }
 .add{
-  padding:7px 10px;
+  padding:5px 7px;
   background-color: #4D16BE;
   color: white;
   outline: none;
@@ -247,7 +247,7 @@ width: 100%;
   .user button {
     border-radius: 30px;
     color: white;
-    padding:5px;
+    padding:8px;
     font-size: 12px;
   }
   .nav-icons{
@@ -257,4 +257,5 @@ width: 100%;
     width: 100%;
     box-shadow: none;
 }
+
 }

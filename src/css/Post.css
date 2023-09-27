@@ -98,7 +98,6 @@
 
 .show_answer{
     margin-left: 5px;
-    border:solid lightgray 1px
 }
 .show_answer small{
     border-radius: 100%;
@@ -107,7 +106,6 @@
 }
 .show_answer:hover{
     background-color: #e5e5e5;
-
 }
 .actions svg{
     height: 15px;
