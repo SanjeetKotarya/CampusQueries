@@ -52,7 +52,7 @@
     cursor: pointer;
     bottom: 5px;
     font-size: 12px;
-    background-color: #F7F7F7;
+    background-color: white;
 }
 .post_footer button:hover{
     background-color: #4D16BE;
@@ -121,15 +121,12 @@
     display: flex;
     justify-content: space-evenly;
     border-radius: 30px;
-
 }
 .more a{
     margin-right:3px ;
     border-radius: 30px;
-    height: fit-content;
     padding: 0 10px;
     border: solid lightgray 1px;
-
 }
 
 .more a:hover{
@@ -144,6 +141,7 @@
 }
 
 .answers{
+    background-color: #f4f4f4;
     border-top: solid lightgray 1px;
     box-shadow: rgb(215, 215, 215) 0px 3px 6px 0px inset;
 }

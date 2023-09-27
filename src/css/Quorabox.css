@@ -8,13 +8,7 @@
 
   z-index: 200;
 }
-@media screen and (max-width: 768px) {
-  .quorabox {
-    position: fixed;
-    margin-top: -49px;
-    width: 100%;
-  }
-}
+
 .search-input input {
   border: none;
   outline: none;
@@ -30,4 +24,14 @@
   border-radius: 25px; /* Adjust the border-radius to control the roundness of the input */
   padding: 3px 10px;
   font-size: 12px;
+}
+@media screen and (max-width: 768px) {
+  .quorabox {
+    position: fixed;
+    margin-top: -49px;
+    width: 100%;
+  }
+  .search-input {
+    width: 80%;
+  }
 }
