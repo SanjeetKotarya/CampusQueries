@@ -22,10 +22,10 @@
 
 .nav-content {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 2px 5px;
-  width: 100%;
+  width: 45%;
   margin: 0 auto;
   position: sticky;
   z-index: 1000;
@@ -237,6 +237,7 @@ width: 100%;
 
   .nav-content {
     justify-content: space-between;
+    width: 95%;
   }
 
   .nav-content .logo a {
@@ -247,7 +248,7 @@ width: 100%;
     border-radius: 30px;
     color: white;
     padding:5px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .nav-icons{
     display: none;
