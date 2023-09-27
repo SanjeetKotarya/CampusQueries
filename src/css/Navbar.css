@@ -24,7 +24,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2px;
+  padding: 2px 5px;
   width: 100%;
   margin: 0 auto;
   position: sticky;
@@ -249,5 +249,8 @@ width: 100%;
     color: white;
     padding:5px;
     font-size: 11px;
+  }
+  .nav-icons{
+    display: none;
   }
 }
