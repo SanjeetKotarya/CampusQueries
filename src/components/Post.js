@@ -4,18 +4,17 @@ import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectQuestionId, setQuestionInfo} from "../features/questionSlice";
+import { selectQuestionId, setQuestionInfo } from "../features/questionSlice";
 import { selectUser } from "../features/userSlice";
 import db from "../firebase";
 import { collection, addDoc, doc } from "firebase/firestore";
 import { serverTimestamp } from "firebase/firestore";
 import { onSnapshot } from "firebase/firestore";
 
-
-function Post({ id, question, image, time, quoraUser,searchQuery  }) {
+function Post({ id, question, image, time, quoraUser, searchQuery }) {
   const [showAnswers, setShowAnswers] = useState(false);
   const [answersCount, setAnswersCount] = useState(0);
+  const [isWebShareSupported, setIsWebShareSupported] = useState(false);
 
   const user = useSelector(selectUser);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,7 +30,6 @@ function Post({ id, question, image, time, quoraUser,searchQuery  }) {
   );
 
   const dispatch = useDispatch();
-
   const questionId = useSelector(selectQuestionId);
   const [answer, setAnswer] = useState("");
   const [getAnswer, setgetAnswer] = useState([]);
@@ -41,22 +39,22 @@ function Post({ id, question, image, time, quoraUser,searchQuery  }) {
       try {
         const quesSnapshot = doc(collection(db, "questions"), id);
         const ansCollection = collection(quesSnapshot, "answer");
-  
+
         // Set up a real-time listener for answers
         const unsubscribe = onSnapshot(ansCollection, (snapshot) => {
           const postAnswer = snapshot.docs.map((doc) => ({
             id: doc.id,
             answers: doc.data(),
           }));
-  
+
           // Sort the answers by timestamp in descending order
           postAnswer.sort((a, b) => b.answers.timestamp - a.answers.timestamp);
-  
+
           setgetAnswer(postAnswer);
           setAnswersCount(postAnswer.length);
           console.log("Answers", postAnswer);
         });
-  
+
         return () => {
           // Unsubscribe the listener when the component unmounts
           unsubscribe();
@@ -65,12 +63,9 @@ function Post({ id, question, image, time, quoraUser,searchQuery  }) {
         console.error("Error fetching data from Firestore:", error);
       }
     };
-  
+
     fetchAnswer();
   }, []);
-  
-  
-  
 
   const handleAnswer = async (e) => {
     e.preventDefault();
@@ -92,6 +87,26 @@ function Post({ id, question, image, time, quoraUser,searchQuery  }) {
       console.error("Error adding document: ", error);
     }
   };
+
+  const handleShare = async () => {
+    try {
+      await navigator.share({
+        title: "Share this post",
+        text: question,
+        url: window.location.href,
+      });
+    } catch (error) {
+      console.error("Error sharing:", error);
+    }
+  };
+  
+  useEffect(() => {
+    // Check if Web Share API is supported
+    if (navigator.share) {
+      setIsWebShareSupported(true);
+    }
+  }, []);
+  
 
   return (
     <div
@@ -122,10 +137,19 @@ function Post({ id, question, image, time, quoraUser,searchQuery  }) {
             <img src={image} alt="Image" />
           </div>
         )}
-        
       </div>
       <div className="post_footer">
         <div className="actions">
+          <a className="like">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              id="heart"
+            >
+              <path d="M20.16,5A6.29,6.29,0,0,0,12,4.36a6.27,6.27,0,0,0-8.16,9.48l6.21,6.22a2.78,2.78,0,0,0,3.9,0l6.21-6.22A6.27,6.27,0,0,0,20.16,5Zm-1.41,7.46-6.21,6.21a.76.76,0,0,1-1.08,0L5.25,12.43a4.29,4.29,0,0,1,0-6,4.27,4.27,0,0,1,6,0,1,1,0,0,0,1.42,0,4.27,4.27,0,0,1,6,0A4.29,4.29,0,0,1,18.75,12.43Z"></path>
+            </svg>
+            <small>2</small>
+          </a>
 
           <a
             className="show_answer"
@@ -133,19 +157,21 @@ function Post({ id, question, image, time, quoraUser,searchQuery  }) {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              height="24"
-              viewBox="0 -960 960 960"
-              width="24"
+              viewBox="0 0 32 32"
+              id="comment"
             >
-              <path d="M80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z" />
+              <path
+                fill="#231F20"
+                d="M25.784 21.017A10.992 10.992 0 0 0 27 16c0-6.065-4.935-11-11-11S5 9.935 5 16s4.935 11 11 11c1.742 0 3.468-.419 5.018-1.215l4.74 1.185a.996.996 0 0 0 .949-.263 1 1 0 0 0 .263-.95l-1.186-4.74zm-2.033.11.874 3.498-3.498-.875a1.006 1.006 0 0 0-.731.098A8.99 8.99 0 0 1 16 25c-4.963 0-9-4.038-9-9s4.037-9 9-9 9 4.038 9 9a8.997 8.997 0 0 1-1.151 4.395.995.995 0 0 0-.098.732z"
+              ></path>
             </svg>
             <small>{answersCount}</small>
           </a>
           <button onClick={() => setIsModalOpen(true)}>Add answer</button>
         </div>
-        
+
         <div className="more">
-          <a href="#">
+          <a href="#" className="share" onClick={handleShare}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24"
@@ -171,9 +197,7 @@ function Post({ id, question, image, time, quoraUser,searchQuery  }) {
         <div className="answers">
           <div className="answers_container">
             {getAnswer
-              .filter(
-                (answer) => answer.answers.questionId === id
-                )
+              .filter((answer) => answer.answers.questionId === id)
               .map(({ id, answers }) => (
                 <div key={id} className="answered">
                   <div className="answer_info">
