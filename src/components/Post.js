@@ -7,11 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectQuestionId, setQuestionInfo } from "../features/questionSlice";
 import { selectUser } from "../features/userSlice";
 import db from "../firebase";
-import { collection, addDoc, doc } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc, getDoc } from "firebase/firestore";
 import { serverTimestamp } from "firebase/firestore";
 import { onSnapshot } from "firebase/firestore";
 
 function Post({ id, question, image, time, quoraUser, searchQuery }) {
+  const [likesCount, setLikesCount] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
+
   const [showAnswers, setShowAnswers] = useState(false);
   const [answersCount, setAnswersCount] = useState(0);
   const [isWebShareSupported, setIsWebShareSupported] = useState(false);
@@ -99,14 +102,60 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
       console.error("Error sharing:", error);
     }
   };
-  
+
   useEffect(() => {
     // Check if Web Share API is supported
     if (navigator.share) {
       setIsWebShareSupported(true);
     }
   }, []);
-  
+
+
+
+  useEffect(() => {
+    const fetchLikes = async () => {
+      try {
+        const questionRef = doc(collection(db, "questions"), id);
+        const docSnapshot = await getDoc(questionRef);
+        const { likedBy } = docSnapshot.data();
+        // Set the initial likes count
+        setLikesCount(likedBy ? likedBy.length : 0);
+        // Check if the current user has already liked the post
+        setIsLiked(likedBy && likedBy.includes(user.uid));
+      } catch (error) {
+        console.error("Error fetching likes:", error);
+      }
+    };
+
+    fetchLikes();
+  }, [id, user.uid]);
+
+  const handleLike = async () => {
+    try {
+      const questionRef = doc(collection(db, "questions"), id);
+      const docSnapshot = await getDoc(questionRef);
+      const { likedBy } = docSnapshot.data();
+
+      if (!likedBy || !likedBy.includes(user.uid)) {
+        // User has not liked, so add the like
+        await updateDoc(questionRef, {
+          likedBy: likedBy ? [...likedBy, user.uid] : [user.uid],
+        });
+        setLikesCount(likedBy ? likedBy.length + 1 : 1);
+        setIsLiked(true);
+      } else {
+        // User has already liked, so remove the like
+        const updatedLikedBy = likedBy.filter((userId) => userId !== user.uid);
+        await updateDoc(questionRef, {
+          likedBy: updatedLikedBy,
+        });
+        setLikesCount(updatedLikedBy.length);
+        setIsLiked(false);
+      }
+    } catch (error) {
+      console.error("Error updating likes:", error);
+    }
+  };
 
   return (
     <div
@@ -140,15 +189,15 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
       </div>
       <div className="post_footer">
         <div className="actions">
-          <a className="like">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              id="heart"
-            >
-              <path d="M20.16,5A6.29,6.29,0,0,0,12,4.36a6.27,6.27,0,0,0-8.16,9.48l6.21,6.22a2.78,2.78,0,0,0,3.9,0l6.21-6.22A6.27,6.27,0,0,0,20.16,5Zm-1.41,7.46-6.21,6.21a.76.76,0,0,1-1.08,0L5.25,12.43a4.29,4.29,0,0,1,0-6,4.27,4.27,0,0,1,6,0,1,1,0,0,0,1.42,0,4.27,4.27,0,0,1,6,0A4.29,4.29,0,0,1,18.75,12.43Z"></path>
-            </svg>
-            <small>2</small>
+          <a className="like" onClick={handleLike}>
+            {isLiked ? (
+              // Liked icon
+<svg className="red-heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="like"><path d="M17.077 2C14.919 2 13.035 3.301 12 5c-1.035-1.699-2.919-3-5.077-3C3.651 2 1 4.611 1 7.833c0 1.612.644 3.088 1.692 4.167C5.074 14.449 12 22 12 22s6.926-7.551 9.308-10A5.973 5.973 0 0 0 23 7.833C23 4.611 20.349 2 17.077 2z"></path></svg>
+            ) : (
+              // Not liked icon
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="like"><path d="M22 4a6.99 6.99 0 0 0-6 3.408A6.99 6.99 0 0 0 10 4a7 7 0 0 0-7 7c0 1.933.761 3.706 2 5 2.815 2.94 11 12 11 12s8.185-9.06 11-12a7.224 7.224 0 0 0 2-5 7 7 0 0 0-7-7zm3.556 10.617C23.457 16.808 18.499 22.262 16 25.02c-2.499-2.757-7.457-8.211-9.556-10.403A5.204 5.204 0 0 1 5 11c0-2.757 2.243-5 5-5 1.768 0 3.369.911 4.285 2.437L16 11.294l1.715-2.857A4.962 4.962 0 0 1 22 6c2.757 0 5 2.243 5 5 0 1.36-.513 2.644-1.444 3.617z"></path></svg>
+)}
+            <small>{likesCount}</small>
           </a>
 
           <a

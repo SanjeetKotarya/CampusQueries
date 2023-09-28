@@ -46,6 +46,8 @@ function Navbar() {
         imageUrl: inputUrl,
         user: user,
         timestamp: serverTimestamp(),
+        likes: 0,
+        likedBy: [],
       });
 
       console.log("Document written with ID: ", docRef.id);

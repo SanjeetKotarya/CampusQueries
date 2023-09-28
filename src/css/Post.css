@@ -112,6 +112,10 @@
     color: #4D16BE;
 }
 
+.red-heart {
+    fill: #FF3040;
+  }
+
 .actions svg{
     height: 18px;
     padding: 0;
