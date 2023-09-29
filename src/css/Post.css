@@ -48,9 +48,8 @@
     border: none;
     border-radius: 30px;
     border: solid lightgray 1px;
-    padding: 4px 10px;
+    padding: 8px;
     cursor: pointer;
-    bottom: 5px;
     font-size: 12px;
     background-color: white;
 }
@@ -114,7 +113,7 @@
   }
 
 .actions svg{
-    height: 30px;
+    height: 25px;
     padding: 0;
     width: fit-content;
 }
@@ -137,7 +136,7 @@
 
 
 .more svg{
-    height: 30px;
+    height: 25px;
 }
 .more svg:hover{
     fill: #4D16BE;

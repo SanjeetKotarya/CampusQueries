@@ -220,7 +220,7 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
         </div>
 
         <div className="more">
-          <a href="#" className="share" onClick={handleShare}>
+          <a className="share" onClick={handleShare}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24"
