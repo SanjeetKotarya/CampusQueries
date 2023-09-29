@@ -1,14 +1,7 @@
-.quora {
-  height: 92vh;
-}
 
 .quora-content {
-  display: flex;
-  justify-content: space-between;
-  width: fit-content;
-  margin-bottom: 0;
-  height: 92vh;
-  width: 60%;
+  width: 50%;
+  margin: 48px auto;
 }
 @media screen and (max-width: 768px) {
   .quora-content {
@@ -17,11 +10,7 @@
     margin: 96px auto;
   }
 }
-@media screen and (min-width: 768px) {
-  .quora-content {
-    margin: 48px auto;
-  }
-}
+
 .react-responsive-modal-modal {
   border-radius: 5px;
   padding: 0;
@@ -33,10 +22,7 @@
 .react-responsive-modal-overlay {
   background: rgb(0 0 0 / 75%);
 }
-.quill {
-  height: 100%;
-  width: 100%;
-}
+
 
 @media screen and (max-width: 768px) {
   .react-responsive-modal-modal {

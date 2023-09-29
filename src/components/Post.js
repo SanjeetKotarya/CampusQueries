@@ -6,9 +6,19 @@ import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectQuestionId, setQuestionInfo } from "../features/questionSlice";
 import { selectUser } from "../features/userSlice";
+import { deleteDocs } from "firebase/firestore";
 import db from "../firebase";
-import { collection, addDoc, doc, updateDoc, getDoc, serverTimestamp, onSnapshot, deleteDoc } from "firebase/firestore";
-
+import {
+  collection,
+  addDoc,
+  doc,
+  updateDoc,
+  getDoc,
+  serverTimestamp,
+  onSnapshot,
+  deleteDoc,
+  getDocs,
+} from "firebase/firestore";
 
 function Post({ id, question, image, time, quoraUser, searchQuery }) {
   const [likesCount, setLikesCount] = useState(0);
@@ -107,8 +117,6 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
     }
   }, []);
 
-
-
   useEffect(() => {
     const fetchLikes = async () => {
       try {
@@ -160,11 +168,23 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
       if (user.uid === quoraUser.uid) {
         // Show confirmation popup
         const isConfirmed = window.confirm("Are you sure you want to delete this post?");
-
+  
         if (isConfirmed) {
+          // Delete the post and its associated answers from the database
           const questionRef = doc(collection(db, "questions"), id);
+          
+          // Get a reference to the "answers" collection inside the question
+          const answersCollectionRef = collection(questionRef, "answer");
+  
+          // Delete all documents inside the "answers" collection
+          const answersSnapshot = await getDocs(answersCollectionRef);
+          const answerDeletionPromises = answersSnapshot.docs.map(async (answerDoc) => {
+            await deleteDoc(doc(answersCollectionRef, answerDoc.id));
+          });
+          await Promise.all(answerDeletionPromises);
+  
+          // Finally, delete the question document
           await deleteDoc(questionRef);
-          // You can also add additional logic to clean up related data if needed
         }
       } else {
         console.error("You are not authorized to delete this post.");
@@ -173,7 +193,7 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
       console.error("Error deleting post:", error);
     }
   };
-
+  
 
   return (
     <div
@@ -210,12 +230,25 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
           <a className="like" onClick={handleLike}>
             {isLiked ? (
               // Liked icon
-<svg className="red-heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="like"><path d="M17.077 2C14.919 2 13.035 3.301 12 5c-1.035-1.699-2.919-3-5.077-3C3.651 2 1 4.611 1 7.833c0 1.612.644 3.088 1.692 4.167C5.074 14.449 12 22 12 22s6.926-7.551 9.308-10A5.973 5.973 0 0 0 23 7.833C23 4.611 20.349 2 17.077 2z"></path></svg>
+              <svg
+                className="red-heart"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                id="like"
+              >
+                <path d="M17.077 2C14.919 2 13.035 3.301 12 5c-1.035-1.699-2.919-3-5.077-3C3.651 2 1 4.611 1 7.833c0 1.612.644 3.088 1.692 4.167C5.074 14.449 12 22 12 22s6.926-7.551 9.308-10A5.973 5.973 0 0 0 23 7.833C23 4.611 20.349 2 17.077 2z"></path>
+              </svg>
             ) : (
               // Not liked icon
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="like"><path d="M22 4a6.99 6.99 0 0 0-6 3.408A6.99 6.99 0 0 0 10 4a7 7 0 0 0-7 7c0 1.933.761 3.706 2 5 2.815 2.94 11 12 11 12s8.185-9.06 11-12a7.224 7.224 0 0 0 2-5 7 7 0 0 0-7-7zm3.556 10.617C23.457 16.808 18.499 22.262 16 25.02c-2.499-2.757-7.457-8.211-9.556-10.403A5.204 5.204 0 0 1 5 11c0-2.757 2.243-5 5-5 1.768 0 3.369.911 4.285 2.437L16 11.294l1.715-2.857A4.962 4.962 0 0 1 22 6c2.757 0 5 2.243 5 5 0 1.36-.513 2.644-1.444 3.617z"></path></svg>
-)}
-           <small>{likesCount} likes</small>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                id="like"
+              >
+                <path d="M22 4a6.99 6.99 0 0 0-6 3.408A6.99 6.99 0 0 0 10 4a7 7 0 0 0-7 7c0 1.933.761 3.706 2 5 2.815 2.94 11 12 11 12s8.185-9.06 11-12a7.224 7.224 0 0 0 2-5 7 7 0 0 0-7-7zm3.556 10.617C23.457 16.808 18.499 22.262 16 25.02c-2.499-2.757-7.457-8.211-9.556-10.403A5.204 5.204 0 0 1 5 11c0-2.757 2.243-5 5-5 1.768 0 3.369.911 4.285 2.437L16 11.294l1.715-2.857A4.962 4.962 0 0 1 22 6c2.757 0 5 2.243 5 5 0 1.36-.513 2.644-1.444 3.617z"></path>
+              </svg>
+            )}
+            <small>{likesCount}</small>
           </a>
 
           <a
@@ -238,8 +271,17 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
         </div>
 
         <div className="more">
-        {user.uid === quoraUser.uid && (
-            <button onClick={handleDelete}>Delete</button>
+          {user.uid === quoraUser.uid && (
+            <a onClick={handleDelete} className="del-for">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24"
+                viewBox="0 -960 960 960"
+                width="24"
+              >
+                <path d="m376-300 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 180q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520Zm-400 0v520-520Z" />
+              </svg>
+            </a>
           )}
           <a className="share" onClick={handleShare}>
             <svg
