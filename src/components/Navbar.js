@@ -229,6 +229,7 @@ function Navbar() {
               Confirm
             </button>
             <input
+              className="img-link"
               type="text"
               value={inputUrl}
               onChange={(e) => setInputUrl(e.target.value)}
