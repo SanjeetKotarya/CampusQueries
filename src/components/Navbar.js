@@ -3,16 +3,28 @@ import "../css/Navbar.css";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, storage } from "../firebase";
 import db from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../features/userSlice";
 import { collection, addDoc } from "firebase/firestore";
 import { serverTimestamp } from "firebase/firestore";
+import { ref, uploadString, getDownloadURL } from "firebase/storage";
 
 function Navbar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showLogoutText, setShowLogoutText] = useState(false); // Add this state
+  const [image, setImage] = useState(null);
+
+
+  const handleCancel = () => {
+
+    setInput("");
+    setInputUrl("");
+    setImage(null);
+  };
+  
+
 
   const Close = (
     <svg
@@ -36,6 +48,33 @@ function Navbar() {
     }
   };
 
+  const handleImageLoad = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleImageUpload = async () => {
+    if (image) {
+      try {
+        const storageRef = ref(
+          storage,
+          `images/${user.uid}/${Date.now()}_${image.name}`
+        );
+        await uploadString(storageRef, image, "data_url");
+        const imageUrl = await getDownloadURL(storageRef);
+        setInputUrl(imageUrl);
+      } catch (error) {
+        console.error("Error uploading image: ", error);
+      }
+    }
+  };
+
   const handleQuestion = async (e) => {
     e.preventDefault();
     setIsModalOpen(false);
@@ -54,6 +93,7 @@ function Navbar() {
 
       setInput("");
       setInputUrl("");
+      setImage(null);
     } catch (error) {
       console.error("Error adding document: ", error);
     }
@@ -65,8 +105,6 @@ function Navbar() {
         <div className="logo">
           <a href="#">¿CampusQueries?</a>
         </div>
-
-
 
         <div className="user">
           <div
@@ -100,7 +138,7 @@ function Navbar() {
         </div>
         <div className="modal_info">
           <div className="avatar">
-          <img src={user?.photo} />
+            <img src={user?.photo} />
           </div>
           <div className="modal_scop">
             <svg
@@ -161,22 +199,36 @@ function Navbar() {
             type="text"
             placeholder="Start your question with 'What', 'How', 'Why', etc."
           ></textarea>
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div className="uploading">
+            <label htmlFor="fileInput" className="custom-file-input-label">
+              Upload
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              id="fileInput"
+              onChange={handleImageLoad}
+              style={{ display: "none" }}
+            />
+            <button className="confirm" onClick={handleImageUpload}>
+              Confirm
+            </button>
             <input
               type="text"
               value={inputUrl}
               onChange={(e) => setInputUrl(e.target.value)}
-              placeholder="Optional: include a link that gives context."
+              placeholder="Image Link"
             ></input>
-            <span className="imgbox">
-              {inputUrl !== "" && <img src={inputUrl} alt="displayimg" />}
-            </span>
           </div>
+
+          <span className="imgbox">
+          {inputUrl && <img src={inputUrl} alt="displayimg" />}
+          </span>
         </div>
 
         <div className="modal_buttons">
-          <button className="cancel" onClick={() => setIsModalOpen(false)}>
-            Cancel
+          <button className="cancel" onClick={handleCancel}>
+            Clear
           </button>
           <button onClick={handleQuestion} className="add" type="submit">
             Add question

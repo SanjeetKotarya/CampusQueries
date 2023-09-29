@@ -143,16 +143,15 @@ width: 100%;
 }
 .imgbox{
   text-align: center;
-  overflow-y: scroll;
-  height: 40vh;
+  height: 200px;
   margin-bottom: 25px;
   border-bottom: solid lightgray 1px;
 }
 
 .modal_field .imgbox img{
   margin: 0 auto;
-  height: auto;
-  width: 60%;
+  height: 100%;
+  width: auto;
 }
 
 .modal_field textarea {
@@ -229,7 +228,39 @@ width: 100%;
   border-radius: 30px;
   font-size: 12px;
 }
-.add:hover{
+.add:active{
+  background-color: #4413a7;
+}
+
+.custom-file-input-label {
+  width: fit-content;
+  padding: 4px 6px;
+  font-size: 12px;
+  border-radius: 30px;
+  border: solid lightgray 1px;
+  cursor: pointer;
+  background-color: white;
+}
+.custom-file-input-label:active {
+  background-color: #e3e3e3;
+}
+.uploading{
+  display: flex;
+  align-items: center;
+}
+.confirm{
+  width: fit-content;
+  padding: 5px 6px;
+  font-size: 12px;
+  border: none;
+  margin: 0 2px;
+  outline: none;
+  color: white;
+  background-color: #4D16BE;
+  border-radius: 30px;
+  cursor: pointer;
+}
+.confirm:active{
   background-color: #4413a7;
 }
 
