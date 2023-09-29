@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../css/Navbar.css";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
@@ -15,16 +15,28 @@ function Navbar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showLogoutText, setShowLogoutText] = useState(false); // Add this state
   const [image, setImage] = useState(null);
+  const avatarRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (avatarRef.current && !avatarRef.current.contains(event.target)) {
+        // Click occurred outside the avatar
+        setShowLogoutText(false);
+      }
+    };
 
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      // Clean up the event listener on component unmount
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const handleCancel = () => {
-
     setInput("");
     setInputUrl("");
     setImage(null);
   };
-  
-
 
   const Close = (
     <svg
@@ -108,13 +120,16 @@ function Navbar() {
 
         <div className="user">
           <div
-            onClick={handleLogout}
             className="avatar"
-            onMouseEnter={() => setShowLogoutText(true)}
-            onMouseLeave={() => setShowLogoutText(false)}
+            onClick={() => setShowLogoutText((prevState) => !prevState)}
+            ref={avatarRef}
           >
             <img src={user?.photo} />
-            {showLogoutText && <div className="logout-text">Logout</div>}
+            {showLogoutText && (
+              <div className="logout-text" onClick={handleLogout}>
+                Logout
+              </div>
+            )}
           </div>
 
           <button onClick={() => setIsModalOpen(true)}>Ask Question</button>
@@ -222,7 +237,7 @@ function Navbar() {
           </div>
 
           <span className="imgbox">
-          {inputUrl && <img src={inputUrl} alt="displayimg" />}
+            {inputUrl && <img src={inputUrl} alt="displayimg" />}
           </span>
         </div>
 

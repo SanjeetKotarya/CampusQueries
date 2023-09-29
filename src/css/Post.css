@@ -79,8 +79,7 @@
     display: flex;
     justify-content: space-between;
     border-top: solid lightgrey 1px;
-    margin:5px 0;
-    padding: 5px 0 0 0;
+    padding: 8px 0 ;
 }
 
 
@@ -115,7 +114,7 @@
   }
 
 .actions svg{
-    height: 18px;
+    height: 20px;
     padding: 0;
     width: fit-content;
 }
@@ -138,7 +137,7 @@
 
 
 .more svg{
-    height: 15px;
+    height: 20px;
 }
 .more svg:hover{
     fill: #4D16BE;
