@@ -7,18 +7,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectQuestionId, setQuestionInfo } from "../features/questionSlice";
 import { selectUser } from "../features/userSlice";
 import db from "../firebase";
-import { collection, addDoc, doc, updateDoc, getDoc } from "firebase/firestore";
-import { serverTimestamp } from "firebase/firestore";
-import { onSnapshot } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc, getDoc, serverTimestamp, onSnapshot, deleteDoc } from "firebase/firestore";
+
 
 function Post({ id, question, image, time, quoraUser, searchQuery }) {
   const [likesCount, setLikesCount] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
-
   const [showAnswers, setShowAnswers] = useState(false);
   const [answersCount, setAnswersCount] = useState(0);
   const [isWebShareSupported, setIsWebShareSupported] = useState(false);
-
   const user = useSelector(selectUser);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const Close = (
@@ -157,6 +154,27 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      // Check if the current user is the owner of the post
+      if (user.uid === quoraUser.uid) {
+        // Show confirmation popup
+        const isConfirmed = window.confirm("Are you sure you want to delete this post?");
+
+        if (isConfirmed) {
+          const questionRef = doc(collection(db, "questions"), id);
+          await deleteDoc(questionRef);
+          // You can also add additional logic to clean up related data if needed
+        }
+      } else {
+        console.error("You are not authorized to delete this post.");
+      }
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  };
+
+
   return (
     <div
       className="post"
@@ -220,6 +238,9 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
         </div>
 
         <div className="more">
+        {user.uid === quoraUser.uid && (
+            <button onClick={handleDelete}>Delete</button>
+          )}
           <a className="share" onClick={handleShare}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
