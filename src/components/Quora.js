@@ -2,6 +2,7 @@ import React from "react";
 import "../css/Quora.css";
 import Navbar from "./Navbar";
 import Feed from "./Feed";
+import Footer from "./Footer";
 
 function Quora() {
 
@@ -15,6 +16,7 @@ function Quora() {
           <Feed />
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
