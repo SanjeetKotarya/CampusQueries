@@ -10,3 +10,58 @@
     color: #4D16BE;
     margin: 20px auto;
   }
+  .render{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background-color: white;
+    border: solid lightgray 1px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+  }
+  .sorting-buttons{
+    display: flex;
+    align-items: center;
+  }
+
+
+
+  .sorting-buttons button{
+    background-color: white;
+    outline: none;
+    border: none;
+    border: solid lightgray 1px;
+    border-radius: 30px;
+    padding: 5px 8px;
+    font-size: 10px;
+    margin: 0 2px;
+  }
+  .render button:hover{
+    background-color: rgb(242, 240, 240);
+  }
+
+  .sorting-buttons p{
+    font-size: 10px;
+  }
+.yourposts{
+  background-color: white;
+  outline: none;
+  border: none;
+  border: solid lightgray 1px;
+  border-radius: 30px;
+  padding:5px 10px;
+  font-size: 10px;
+  margin: 0 2px;
+}
+
+.render button:active{
+  background-color: #4D16BE;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .render{
+    margin-bottom: 0;
+    border-bottom-color:transparent ;
+  }
+}

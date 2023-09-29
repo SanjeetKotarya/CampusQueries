@@ -25,11 +25,12 @@ function Quorabox({ onSearch }) {
         <input
           type="text"
           className="search-input"
-          placeholder="Search Quora"
+          placeholder="Search in feed"
           value={searchQuery}
           onChange={handleInputChange} // Handle input change
         />
       </div>
+
     </div>
   );
 }

@@ -4,31 +4,65 @@ import Post from "./Post";
 import db from "../firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 import Quorabox from "./Quorabox";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
 
 function Feed() {
   const [posts, setPosts] = useState([]);
-  const [searchQuery, setSearchQuery] = useState(""); // State to track the search query
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState("timestamp");
+  const user = useSelector(selectUser);
+
+  const handleSort = (newSortBy) => {
+    setSortBy(newSortBy);
+  };
+
+  const handleYourPosts = () => {
+    setSortBy("yourPosts"); // Update the sortBy state to a custom value
+
+    // Fetch posts and filter based on the logged-in user's ID
+    const filteredPosts = posts.filter(
+      ({ question }) => question.user.uid === user.uid
+    );
+
+    // Sort the filtered posts by timestamp in descending order
+    filteredPosts.sort((a, b) => b.question.timestamp - a.question.timestamp);
+
+    // Set the sorted and filtered posts to the state
+    setPosts(filteredPosts);
+  };
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const quesSnapshot = collection(db, "questions");
 
-        // Set up a real-time listener for questions
         const unsubscribe = onSnapshot(quesSnapshot, (snapshot) => {
           const postquestion = snapshot.docs.map((doc) => ({
             id: doc.id,
             question: doc.data(),
           }));
 
-          // Sort the questions by timestamp in descending order
-          postquestion.sort((a, b) => b.question.timestamp - a.question.timestamp);
+          let filteredPosts = [...postquestion];
 
-          setPosts(postquestion);
+          if (sortBy === "timestamp") {
+            filteredPosts.sort(
+              (a, b) => b.question.timestamp - a.question.timestamp
+            );
+          } else if (sortBy === "likedBy") {
+            filteredPosts.sort(
+              (a, b) => b.question.likedBy.length - a.question.likedBy.length
+            );
+          } else if (sortBy === "yourPosts") {
+            filteredPosts = filteredPosts.filter(
+              ({ question }) => question.user.uid === user.uid
+            );
+          }
+
+          setPosts(filteredPosts);
         });
 
         return () => {
-          // Unsubscribe the listener when the component unmounts
           unsubscribe();
         };
       } catch (error) {
@@ -37,13 +71,12 @@ function Feed() {
     };
 
     fetchPosts();
-  }, []);
+  }, [sortBy, user]);
 
   const handleSearch = (query) => {
-    setSearchQuery(query); // Update the search query state
+    setSearchQuery(query);
   };
 
-  // Filter posts based on the search query
   const filteredPosts = posts.filter(({ question }) =>
     question.question.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -51,9 +84,17 @@ function Feed() {
   return (
     <div className="feed">
       <Quorabox onSearch={handleSearch} />
-
+      <div className="render">
+        <div className="sorting-buttons">
+          <p>Sort by : </p>
+          <button onClick={() => handleSort("timestamp")}>
+            Date
+          </button>
+          <button onClick={() => handleSort("likedBy")}>Most Liked</button>
+        </div>
+        <button onClick={handleYourPosts} className="yourposts">Your Posts</button>
+      </div>
       {searchQuery === "" ? (
-        // Show all posts when search query is empty
         posts.map(({ id, question }) => (
           <Post
             key={id}
@@ -64,7 +105,7 @@ function Feed() {
             time={question.timestamp}
           />
         ))
-      ) : filteredPosts.length === 0 ? ( // Show message when no matching posts
+      ) : filteredPosts.length === 0 ? (
         <p className="sorry">Sorry, no posts match your query.</p>
       ) : (
         filteredPosts.map(({ id, question }) => (
@@ -78,7 +119,6 @@ function Feed() {
           />
         ))
       )}
-
     </div>
   );
 }
