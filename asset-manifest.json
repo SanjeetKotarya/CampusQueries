@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/CampusQueries/static/css/main.569196a8.css",
-    "main.js": "/CampusQueries/static/js/main.c6505351.js",
+    "main.css": "/CampusQueries/static/css/main.6c093cf9.css",
+    "main.js": "/CampusQueries/static/js/main.6db09d95.js",
     "static/js/787.fe1e87e5.chunk.js": "/CampusQueries/static/js/787.fe1e87e5.chunk.js",
     "index.html": "/CampusQueries/index.html",
-    "main.569196a8.css.map": "/CampusQueries/static/css/main.569196a8.css.map",
-    "main.c6505351.js.map": "/CampusQueries/static/js/main.c6505351.js.map",
+    "main.6c093cf9.css.map": "/CampusQueries/static/css/main.6c093cf9.css.map",
+    "main.6db09d95.js.map": "/CampusQueries/static/js/main.6db09d95.js.map",
     "787.fe1e87e5.chunk.js.map": "/CampusQueries/static/js/787.fe1e87e5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.569196a8.css",
-    "static/js/main.c6505351.js"
+    "static/css/main.6c093cf9.css",
+    "static/js/main.6db09d95.js"
   ]
 }
