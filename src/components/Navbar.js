@@ -60,16 +60,7 @@ function Navbar() {
     }
   };
 
-  const handleImageLoad = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+
 
   const handleImageUpload = async () => {
     if (image) {
@@ -110,6 +101,20 @@ function Navbar() {
       console.error("Error adding document: ", error);
     }
   };
+
+  const [isImageUploaded, setIsImageUploaded] = useState(false); // Add this state
+
+  const handleImageLoad = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+        setIsImageUploaded(true); // Set the state to true after image upload
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 
   return (
     <div className="Navbar">
@@ -216,7 +221,7 @@ function Navbar() {
           ></textarea>
           <div className="uploading">
             <label htmlFor="fileInput" className="custom-file-input-label">
-              Upload
+            {isImageUploaded ? "Uploaded" : "Upload"}
             </label>
             <input
               type="file"
