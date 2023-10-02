@@ -80,7 +80,7 @@
   display: flex;
   justify-content: space-between;
   border-top: solid lightgrey 1px;
-  padding: 8px 0;
+  padding: 8px 5px;
 }
 
 .actions {
