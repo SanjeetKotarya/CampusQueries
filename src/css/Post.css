@@ -141,7 +141,7 @@
 .share:hover {
   fill: black;
 }
-.share:active {
+.share:hover {
   fill: #4d16be;
 }
 
@@ -213,7 +213,7 @@
 .modal_question .post_info {
   padding: 10px 0;
 }
-.show_answer:active {
+.show_answer:hover {
     fill: #4d16be;
   }
 
