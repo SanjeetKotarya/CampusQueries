@@ -3,8 +3,10 @@
   flex-direction: column;
   border: solid lightgray 1px;
   background-color: white;
-  border-radius: 3px;
+  border-radius: 15px;
+  margin: 0 3px;
   margin-bottom: 10px;
+  
 }
 
 .post_info {
@@ -65,13 +67,16 @@
 .post_body .post-imgbox {
   margin-top: 5px;
   overflow: hidden;
-  height: 250px;
+  height: fit-content;
   text-align: center;
+  padding: 0 10px;
 }
 .post_body .post-imgbox img {
-  width: auto;
-  height: 100%;
+  width: 100%;
+  height: auto;
   margin: 0 auto;
+  border: solid lightgray 1px;
+  border-radius: 15px;
 }
 
 .post_footer {
@@ -150,6 +155,9 @@
 .answers {
   border-top: solid lightgray 1px;
   box-shadow: rgb(215, 215, 215) 0px 3px 6px 0px inset;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px ;
+  overflow: hidden;
 }
 .answers .avatar {
   width: 20px;
@@ -198,13 +206,49 @@
 }
 .modal_answer textarea {
   border: none;
-  border-bottom: solid lightgray 1px;
   outline: none;
   width: 100%;
+  min-height: 200px;
 }
 .modal_question .post_info {
   padding: 10px 0;
 }
 .show_answer:active {
     fill: #4d16be;
+  }
+
+  .delconfirm{
+    text-align: center;
+    padding: 10px 10px 0 10px;
+  }
+  .delconfirm button{
+    border: none;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+    font-size: 14px;
+    margin: 0 5px;
+    background-color: white;
+    border-radius: 30px;
+    text-align: center;
+    border: solid lightgray 1px;
+    cursor: pointer;
+  }
+  .delconfirm button:hover{
+    background-color: rgb(245, 245, 245);
+  }
+  .conbuttons{
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+  }
+  @media screen and (max-width: 768px) {
+    .post_body .post-imgbox img {
+      border-radius: 0;
+      border: none;
+    }
+    
+.post_body .post-imgbox {
+  padding: 0 0;
+}
   }

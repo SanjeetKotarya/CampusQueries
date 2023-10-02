@@ -19,6 +19,7 @@ import {
   deleteDoc,
   getDocs,
 } from "firebase/firestore";
+import { formatDistanceToNow } from "date-fns";
 
 function Post({ id, question, image, time, quoraUser, searchQuery }) {
   const [likesCount, setLikesCount] = useState(0);
@@ -162,30 +163,35 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
     }
   };
 
-  const handleDelete = async () => {
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+
+  const handleDelete = () => {
+    setIsConfirmationModalOpen(true);
+  };
+  const handleConfirmDelete = async () => {
     try {
-      // Check if the current user is the owner of the post
-      if (user.uid === quoraUser.uid) {
-        // Show confirmation popup
-        const isConfirmed = window.confirm("Are you sure you want to delete this post?");
+      // Check if the current user is either the owner of the post or the owner of the website
+      if (user.uid === quoraUser.uid || user.uid === "5jc43zPph5N5ao8zVS7LY7Gc0zz1") {
+        // Directly proceed to delete the post and its associated answers from the database
+        const questionRef = doc(collection(db, "questions"), id);
   
-        if (isConfirmed) {
-          // Delete the post and its associated answers from the database
-          const questionRef = doc(collection(db, "questions"), id);
-          
-          // Get a reference to the "answers" collection inside the question
-          const answersCollectionRef = collection(questionRef, "answer");
+        // Get a reference to the "answers" collection inside the question
+        const answersCollectionRef = collection(questionRef, "answer");
   
-          // Delete all documents inside the "answers" collection
-          const answersSnapshot = await getDocs(answersCollectionRef);
-          const answerDeletionPromises = answersSnapshot.docs.map(async (answerDoc) => {
+        // Delete all documents inside the "answers" collection
+        const answersSnapshot = await getDocs(answersCollectionRef);
+        const answerDeletionPromises = answersSnapshot.docs.map(
+          async (answerDoc) => {
             await deleteDoc(doc(answersCollectionRef, answerDoc.id));
-          });
-          await Promise.all(answerDeletionPromises);
+          }
+        );
+        await Promise.all(answerDeletionPromises);
   
-          // Finally, delete the question document
-          await deleteDoc(questionRef);
-        }
+        // Finally, delete the question document
+        await deleteDoc(questionRef);
+  
+        // Close the confirmation modal
+        setIsConfirmationModalOpen(false);
       } else {
         console.error("You are not authorized to delete this post.");
       }
@@ -215,7 +221,11 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
           <h4>{quoraUser?.userName}</h4>
           <p>{quoraUser?.email}</p>
         </span>
-        <small>{time?.toDate().toLocaleDateString()}</small>
+        <small>
+          {time
+            ? formatDistanceToNow(time.toDate(), { addSuffix: true })
+            : "Just now"}
+        </small>
       </div>
       <div className="post_body">
         <p>{question}</p>
@@ -271,7 +281,7 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
         </div>
 
         <div className="more">
-          {user.uid === quoraUser.uid && (
+          {(user.uid === quoraUser.uid || user.uid === "5jc43zPph5N5ao8zVS7LY7Gc0zz1") && (
             <a onClick={handleDelete} className="del-for">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -360,12 +370,38 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
           ></textarea>
         </div>
         <div className="modal_buttons">
-          <button className="cancel" onClick={() => setIsModalOpen(false)}>
+          <button
+            className="cancel"
+            onClick={() => {
+              setAnswer(""); // Clear the textarea
+              setIsModalOpen(false); // Close the modal
+            }}
+          >
             Cancel
           </button>
           <button className="add" type="submit" onClick={handleAnswer}>
             Add Answer
           </button>
+        </div>
+      </Modal>
+
+      {/* Confirmation Modal */}
+      <Modal
+        open={isConfirmationModalOpen}
+        closeIcon={Close}
+        onClose={() => setIsConfirmationModalOpen(false)}
+        contentLabel="Confirm Deletion"
+        center
+        closeOnOverlayClick
+        closeOnEsc
+      >
+        <div className="delconfirm">
+        <h2>Do you want to delete this post?</h2>
+        <p>You cannot undo this action.</p>
+        <div className="conbuttons">
+        <button style={{color: "red"}} onClick={handleConfirmDelete}>Delete</button>
+        <button style={{color: "blue"}} onClick={() => setIsConfirmationModalOpen(false)}>Cancel</button>
+        </div>
         </div>
       </Modal>
     </div>

@@ -17,6 +17,8 @@
     background-color: white;
     border: solid lightgray 1px;
     margin-bottom: 10px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
     justify-content: space-between;
   }
   .sorting-buttons{
@@ -61,7 +63,8 @@
 
 @media screen and (max-width: 768px) {
   .render{
-    margin-bottom: 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     border-bottom-color:transparent ;
   }
 }

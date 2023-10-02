@@ -1,6 +1,6 @@
 
 .quora-content {
-  width: 50%;
+  width: 40%;
   margin: 0 auto;
   margin-top: 48px;
   
@@ -15,11 +15,9 @@
 }
 
 .react-responsive-modal-modal {
-  border-radius: 5px;
-  padding: 0;
+  border-radius: 15px;
   min-width: 40%;
-  position: relative;
-  min-height: 350px;
+  min-height: fit-content;
   max-height: 80vh;
 }
 .react-responsive-modal-overlay {

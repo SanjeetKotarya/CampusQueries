@@ -6,6 +6,8 @@
   z-index: 200;
   border: solid lightgray 1px;
   border-bottom-color: transparent;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 .search-input input {
