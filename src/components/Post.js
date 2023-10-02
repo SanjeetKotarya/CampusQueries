@@ -171,13 +171,16 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
   const handleConfirmDelete = async () => {
     try {
       // Check if the current user is either the owner of the post or the owner of the website
-      if (user.uid === quoraUser.uid || user.uid === "5jc43zPph5N5ao8zVS7LY7Gc0zz1") {
+      if (
+        user.uid === quoraUser.uid ||
+        user.uid === "5jc43zPph5N5ao8zVS7LY7Gc0zz1"
+      ) {
         // Directly proceed to delete the post and its associated answers from the database
         const questionRef = doc(collection(db, "questions"), id);
-  
+
         // Get a reference to the "answers" collection inside the question
         const answersCollectionRef = collection(questionRef, "answer");
-  
+
         // Delete all documents inside the "answers" collection
         const answersSnapshot = await getDocs(answersCollectionRef);
         const answerDeletionPromises = answersSnapshot.docs.map(
@@ -186,10 +189,10 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
           }
         );
         await Promise.all(answerDeletionPromises);
-  
+
         // Finally, delete the question document
         await deleteDoc(questionRef);
-  
+
         // Close the confirmation modal
         setIsConfirmationModalOpen(false);
       } else {
@@ -199,7 +202,20 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
       console.error("Error deleting post:", error);
     }
   };
-  
+  const handleDeleteAnswer = async (answerId) => {
+    try {
+      // Get a reference to the answer document
+      const answerRef = doc(
+        collection(db, "questions", id, "answer"),
+        answerId
+      );
+
+      // Delete the answer document
+      await deleteDoc(answerRef);
+    } catch (error) {
+      console.error("Error deleting answer:", error);
+    }
+  };
 
   return (
     <div
@@ -281,7 +297,8 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
         </div>
 
         <div className="more">
-          {(user.uid === quoraUser.uid || user.uid === "5jc43zPph5N5ao8zVS7LY7Gc0zz1") && (
+          {(user.uid === quoraUser.uid ||
+            user.uid === "5jc43zPph5N5ao8zVS7LY7Gc0zz1") && (
             <a onClick={handleDelete} className="del-for">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -320,11 +337,20 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
                     </div>
                     <span>
                       <h4>{answers.user?.userName}</h4>
-                      <p>{answers.user?.email}</p>
+                      <p>
+                        {answers.timestamp
+                          ? formatDistanceToNow(answers.timestamp.toDate(), {
+                              addSuffix: true,
+                            })
+                          : "Just now"}
+                      </p>
                     </span>
-                    <small>
-                      {answers.timestamp?.toDate().toLocaleDateString()}
-                    </small>
+                    {(user.uid === answers.user.uid ||
+                      user.uid === "5jc43zPph5N5ao8zVS7LY7Gc0zz1") && (
+                      <p className="ansdel" onClick={() => handleDeleteAnswer(id)}>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="delete"><path d="M24.2,12.193,23.8,24.3a3.988,3.988,0,0,1-4,3.857H12.2a3.988,3.988,0,0,1-4-3.853L7.8,12.193a1,1,0,0,1,2-.066l.4,12.11a2,2,0,0,0,2,1.923h7.6a2,2,0,0,0,2-1.927l.4-12.106a1,1,0,0,1,2,.066Zm1.323-4.029a1,1,0,0,1-1,1H7.478a1,1,0,0,1,0-2h3.1a1.276,1.276,0,0,0,1.273-1.148,2.991,2.991,0,0,1,2.984-2.694h2.33a2.991,2.991,0,0,1,2.984,2.694,1.276,1.276,0,0,0,1.273,1.148h3.1A1,1,0,0,1,25.522,8.164Zm-11.936-1h4.828a3.3,3.3,0,0,1-.255-.944,1,1,0,0,0-.994-.9h-2.33a1,1,0,0,0-.994.9A3.3,3.3,0,0,1,13.586,7.164Zm1.007,15.151V13.8a1,1,0,0,0-2,0v8.519a1,1,0,0,0,2,0Zm4.814,0V13.8a1,1,0,0,0-2,0v8.519a1,1,0,0,0,2,0Z"></path></svg>
+                      </p>
+                    )}
                   </div>
                   <div className="answer_body">
                     <p>{answers.answer}</p>
@@ -396,12 +422,19 @@ function Post({ id, question, image, time, quoraUser, searchQuery }) {
         closeOnEsc
       >
         <div className="delconfirm">
-        <h2>Do you want to delete this post?</h2>
-        <p>You cannot undo this action.</p>
-        <div className="conbuttons">
-        <button style={{color: "red"}} onClick={handleConfirmDelete}>Delete</button>
-        <button style={{color: "blue"}} onClick={() => setIsConfirmationModalOpen(false)}>Cancel</button>
-        </div>
+          <h2>Do you want to delete this post?</h2>
+          <p>You cannot undo this action.</p>
+          <div className="conbuttons">
+            <button style={{ color: "red" }} onClick={handleConfirmDelete}>
+              Delete
+            </button>
+            <button
+              style={{ color: "blue" }}
+              onClick={() => setIsConfirmationModalOpen(false)}
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       </Modal>
     </div>

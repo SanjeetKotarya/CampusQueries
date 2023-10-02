@@ -165,6 +165,8 @@
   display: flex;
   padding: 10px;
   align-items: center;
+  position: relative;
+
 }
 .answer_info span {
   margin: 0 10px;
@@ -185,6 +187,7 @@
   text-align: left;
   position: relative;
   border-bottom: solid lightgray 1px;
+  border-radius: 15px;
   padding-bottom: 10px;
 }
 
@@ -239,6 +242,18 @@
     display: flex;
     margin-top: 20px;
     justify-content: space-between;
+  }
+
+  .ansdel{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+  }
+  .ansdel svg{
+    height: 20px;
+    padding: 2px;
+    width: 20px;
+    fill: red;
   }
   @media screen and (max-width: 768px) {
     .post {
