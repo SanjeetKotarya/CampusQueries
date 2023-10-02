@@ -4,9 +4,8 @@
   border: solid lightgray 1px;
   background-color: white;
   border-radius: 15px;
-  margin: 0 6px;
+  margin: 0 0;
   margin-bottom: 10px;
-  
 }
 
 .post_info {
@@ -242,6 +241,9 @@
     justify-content: space-between;
   }
   @media screen and (max-width: 768px) {
+    .post {
+      margin: 0 10px;
+    }
     .post_body .post-imgbox img {
       border-radius: 0;
       border: none;

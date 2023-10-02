@@ -32,6 +32,7 @@
     background-color: white;
     outline: none;
     border: none;
+    cursor: pointer;
     border: solid lightgray 1px;
     border-radius: 30px;
     padding: 5px 8px;
@@ -48,6 +49,7 @@
 .yourposts{
   background-color: white;
   outline: none;
+  cursor: pointer;
   border: none;
   border: solid lightgray 1px;
   border-radius: 30px;
@@ -66,5 +68,8 @@
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-color:transparent ;
+    margin: 0 10px;
+    margin-bottom: 10px;
+    border: none;
   }
 }

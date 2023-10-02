@@ -92,7 +92,7 @@ function Feed() {
           </button>
           <button onClick={() => handleSort("likedBy")}>Most Liked</button>
         </div>
-        <button onClick={handleYourPosts} className="yourposts">Your Posts</button>
+        <button onClick={handleYourPosts} className="yourposts">My Posts</button>
       </div>
       {searchQuery === "" ? (
         posts.map(({ id, question }) => (
