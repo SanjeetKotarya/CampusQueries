@@ -4,7 +4,6 @@
   border: solid lightgray 1px;
   background-color: white;
   border-radius: 15px;
-  margin: 0 0;
   margin-bottom: 10px;
 }
 
@@ -258,6 +257,7 @@
   @media screen and (max-width: 768px) {
     .post {
       margin: 0 10px;
+      margin-bottom: 8px;
     }
     .post_body .post-imgbox img {
       border-radius: 0;
