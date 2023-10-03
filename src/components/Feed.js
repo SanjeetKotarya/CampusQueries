@@ -76,10 +76,27 @@ function Feed() {
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
+  
+// ...
 
-  const filteredPosts = posts.filter(({ question }) =>
-    question.question.toLowerCase().includes(searchQuery.toLowerCase())
+const filteredPosts = posts.filter(({ question }) => {
+  if (!question) {
+    return false; // Skip undefined questions
+  }
+
+  const lowerCaseQuery = searchQuery.toLowerCase();
+  const lowerCaseQuestion = (question.question || '').toLowerCase();
+  const lowerCaseUserName = (question.user?.userName || '').toLowerCase();
+
+  // Check if the question or the user's name includes the search query
+  return (
+    lowerCaseQuestion.includes(lowerCaseQuery) ||
+    lowerCaseUserName.includes(lowerCaseQuery)
   );
+});
+
+// ...
+
 
   return (
     <div className="feed">

@@ -271,6 +271,13 @@ width: 100%;
 .confirm:active{
   background-color: #4413a7;
 }
+.selected-image-name{
+  margin: 0 10px;
+}
+.uploading svg{
+  margin-right: 10px;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 768px) {
 

@@ -35,7 +35,9 @@ function Navbar() {
   const handleCancel = () => {
     setInput("");
     setInputUrl("");
-    setImage(null);
+    setImage(null); // Clear the selected image
+    setIsImageUploaded(false); // Reset the image upload state
+    setSelectedImageName(""); // Reset the selected image name
   };
 
   const Close = (
@@ -59,8 +61,6 @@ function Navbar() {
       });
     }
   };
-
-
 
   const handleImageUpload = async () => {
     if (image) {
@@ -103,6 +103,7 @@ function Navbar() {
   };
 
   const [isImageUploaded, setIsImageUploaded] = useState(false); // Add this state
+  const [selectedImageName, setSelectedImageName] = useState("");
 
   const handleImageLoad = (e) => {
     const file = e.target.files[0];
@@ -110,11 +111,24 @@ function Navbar() {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImage(reader.result);
-        setIsImageUploaded(true); // Set the state to true after image upload
+        setIsImageUploaded(true);
+
+        // Set the selected image name in the state
+        setSelectedImageName(file.name);
       };
       reader.readAsDataURL(file);
     }
-  }
+  };
+
+  const fileInputRef = useRef(null);
+
+  const handleImageIconClick = () => {
+    // Trigger the file input when the icon is clicked
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+    handleImageUpload();
+  };
 
   return (
     <div className="Navbar">
@@ -220,25 +234,69 @@ function Navbar() {
             placeholder="Start your question with 'What', 'How', 'Why', etc."
           ></textarea>
           <div className="uploading">
-            <label htmlFor="fileInput" className="custom-file-input-label">
-            {isImageUploaded ? "Uploaded" : "Upload"}
-            </label>
+            <span onClick={handleImageIconClick}>
+              <svg
+                width="30px"
+                height="30px"
+                viewBox="0 0 1024 1024"
+                class="icon"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M853.333333 874.666667H170.666667c-46.933333 0-85.333333-38.4-85.333334-85.333334V234.666667c0-46.933333 38.4-85.333333 85.333334-85.333334h682.666666c46.933333 0 85.333333 38.4 85.333334 85.333334v554.666666c0 46.933333-38.4 85.333333-85.333334 85.333334z"
+                  fill="#8CBCD6"
+                />
+                <path
+                  d="M746.666667 341.333333m-64 0a64 64 0 1 0 128 0 64 64 0 1 0-128 0Z"
+                  fill="#B3DDF5"
+                />
+                <path
+                  d="M426.666667 341.333333L192 682.666667h469.333333z"
+                  fill="#9AC9E3"
+                />
+                <path
+                  d="M661.333333 469.333333l-170.666666 213.333334h341.333333z"
+                  fill="#B3DDF5"
+                />
+                <path
+                  d="M810.666667 810.666667m-213.333334 0a213.333333 213.333333 0 1 0 426.666667 0 213.333333 213.333333 0 1 0-426.666667 0Z"
+                  fill="#43A047"
+                />
+                <path
+                  d="M768 682.666667h85.333333v256h-85.333333z"
+                  fill="#FFFFFF"
+                />
+                <path
+                  d="M682.666667 768h256v85.333333H682.666667z"
+                  fill="#FFFFFF"
+                />
+              </svg>
+            </span>
+
             <input
               type="file"
               accept="image/*"
               id="fileInput"
               onChange={handleImageLoad}
               style={{ display: "none" }}
+              ref={fileInputRef} // Connect the ref to the file input
             />
+            {selectedImageName && (
+              <p className="selected-image-name">{selectedImageName}</p>
+            )}
             <button className="confirm" onClick={handleImageUpload}>
               Confirm
             </button>
+          </div>
+          <div className="uploading">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path d="M16.949 7.051c.39.389.391 1.022.001 1.413l-8.485 8.486c-.392.391-1.023.391-1.414 0-.39-.39-.39-1.021.001-1.412l8.485-8.488c.39-.39 1.024-.387 1.412.001zm-5.805 10.043c-.164.754-.541 1.486-1.146 2.088l-1.66 1.66c-1.555 1.559-3.986 1.663-5.413.235-1.429-1.428-1.323-3.857.234-5.413l1.661-1.663c.603-.601 1.334-.98 2.087-1.144l1.934-1.934c-1.817-.306-3.829.295-5.313 1.783l-1.662 1.661c-2.342 2.34-2.5 5.978-.354 8.123 2.145 2.146 5.783 1.985 8.123-.354l1.66-1.66c1.486-1.487 2.089-3.496 1.783-5.314l-1.934 1.932zm3.222-15.231l-1.66 1.66c-1.486 1.488-2.089 3.499-1.783 5.317l1.935-1.935c.162-.753.54-1.485 1.146-2.087l1.66-1.66c1.556-1.559 3.984-1.663 5.413-.234 1.429 1.427 1.324 3.857-.233 5.415l-1.66 1.66c-.602.603-1.334.981-2.089 1.145l-1.934 1.934c1.818.306 3.827-.295 5.317-1.783l1.658-1.662c2.34-2.339 2.498-5.976.354-8.121-2.145-2.146-5.78-1.987-8.124.351z"/></svg>
             <input
               className="img-link"
               type="text"
               value={inputUrl}
               onChange={(e) => setInputUrl(e.target.value)}
-              placeholder="Image Link"
+              placeholder="Paste image link here"
             ></input>
           </div>
 
