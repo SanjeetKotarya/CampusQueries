@@ -68,6 +68,7 @@
   height: fit-content;
   text-align: center;
   padding: 0 10px;
+  margin-bottom: 5px;
 }
 .post_body .post-imgbox img {
   width: 100%;
@@ -337,14 +338,6 @@ box small {
   .post {
     margin: 0 10px;
     margin-bottom: 8px;
-  }
-  .post_body .post-imgbox img {
-    border-radius: 0;
-    border: none;
-  }
-
-  .post_body .post-imgbox {
-    padding: 0 0;
   }
 }
 
