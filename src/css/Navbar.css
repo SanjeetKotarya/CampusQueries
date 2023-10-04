@@ -147,11 +147,12 @@ width: 100%;
   height: fit-content;
   flex: 1;
 }
-.imgbox{
+.modal_field .imgbox{
   text-align: center;
-
   margin-bottom: 25px;
   border-bottom: solid lightgray 1px;
+  overflow-y: scroll;
+  height: 150px;
 }
 
 .modal_field .imgbox img{
@@ -162,13 +163,16 @@ width: 100%;
 }
 
 .modal_field textarea {
-  flex: 1;
   border: none;
   outline: none;
   border-bottom: solid lightgray 1px;
+  border-top: solid lightgray 1px;
   font-family: Arial, sans-serif;
   transition: .3s ease-in-out;
+  height: 100px;
   width: 100%;
+  resize: none; 
+  display: block;
   margin-bottom: 10px;
 }
 .modal_field textarea:hover{
