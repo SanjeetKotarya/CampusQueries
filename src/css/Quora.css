@@ -18,15 +18,12 @@
   border-radius: 15px;
   min-width: 40%;
   min-height: fit-content;
+  position: absolute;
   max-height: 80vh;
+  margin: 0 auto;
 }
 .react-responsive-modal-overlay {
   background: rgb(0 0 0 / 75%);
 }
 
 
-@media screen and (max-width: 768px) {
-  .react-responsive-modal-modal {
-    min-width: 80%;
-  }
-}

@@ -566,10 +566,10 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
           <img src={quoraUser?.photo} alt="User Avatar" />
         </span>
         <span>
-          <h4>{quoraUser?.userName}</h4>
-          <small>{quoraUser?.email}</small><br/>
+          <h2>{quoraUser?.userName}</h2>
+          <p>{quoraUser?.email}</p>
           <small>About :</small><br/>
-          <small className="abouttxt">{aboutme || "Nothing here"}</small><br />
+          <small className="abouttxt">{aboutme || "Nothing here"}</small>
           {canEdit && (
             <React.Fragment>
               {isEditing ? (
