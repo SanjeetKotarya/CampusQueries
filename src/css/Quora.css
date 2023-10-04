@@ -5,14 +5,7 @@
   margin-top: 48px;
   
 }
-@media screen and (max-width: 768px) {
-  .quora-content {
-    display: block;
-    width: 100%;
-    margin-top: 96px;
-    margin-bottom: 20px;
-  }
-}
+
 
 .react-responsive-modal-modal {
   border-radius: 15px;
@@ -28,3 +21,14 @@
 }
 
 
+@media screen and (max-width: 768px) {
+  .react-responsive-modal-modal {
+    min-width: 70%;
+  }
+  .quora-content {
+    display: block;
+    width: 100%;
+    margin-top: 96px;
+    margin-bottom: 20px;
+  }
+}

@@ -246,7 +246,7 @@
   cursor: pointer;
 border-bottom-left-radius: 15px;
 border-bottom-right-radius: 15px;
-  background-color: #e2e0fd;
+  background-color: rgb(234, 232, 232);
   border: solid lightgray 1px;
 }
 
@@ -355,7 +355,7 @@ color: blue;
 }
   }
 
-  .show_answer svg:hover {
-background-color: rgb(224, 221, 221);
+  .show_answer svg:active {
+background-color: rgb(240, 236, 236);
 border-radius: 10px;
   }
