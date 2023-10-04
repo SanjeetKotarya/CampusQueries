@@ -68,15 +68,17 @@
 }
 .mic-button{
   border-radius: 100%;
+  display: flex;
+  align-items: center;
   background-color: rgb(229, 229, 229);
-  padding: 2px 4px;
+  padding: 6px;
   cursor: pointer;
 }
-.mic-button:hover{
-  background-color: rgb(216, 216, 216);
+
+
+.mic-button:hover svg{
   transform: scale(1.03);
 }
-
 
 .sort-options button:hover{
   background-color: rgb(237, 237, 237);
