@@ -277,7 +277,6 @@ width: 100%;
 }
 .selected-image-name{
   margin: 0 10px;
-  border: solid red 1px;
   max-width: 150px;
   height: 20px; 
   overflow: hidden;

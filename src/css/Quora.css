@@ -23,7 +23,7 @@
 
 @media screen and (max-width: 768px) {
   .react-responsive-modal-modal {
-    min-width: 70%;
+    min-width: 75%;
   }
   .quora-content {
     display: block;
