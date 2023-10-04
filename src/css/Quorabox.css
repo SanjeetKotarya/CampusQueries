@@ -8,6 +8,7 @@
   border-bottom-color: transparent;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  font-family: Poppins;
 }
 
 .search-input input {
@@ -22,6 +23,7 @@
   width: 90%;
   display: flex;
   background-color: white;
+  font-family: Poppins;
   align-items: center;
   margin: 0 auto;
   border: 1px solid #ccc;
