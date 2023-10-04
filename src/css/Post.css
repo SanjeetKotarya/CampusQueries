@@ -246,8 +246,8 @@
   cursor: pointer;
 border-bottom-left-radius: 15px;
 border-bottom-right-radius: 15px;
-  background-color: rgb(234, 232, 232);
-  border: solid lightgray 1px;
+  background-color: #eae8e8;
+  box-shadow: rgb(215, 215, 215) 0px 3px 3px 0px ;
 }
 
 .addans svg{
