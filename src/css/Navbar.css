@@ -12,14 +12,16 @@
   background-color: white;
   color: black;
   border-radius: 30px;
-  padding: 5px 8px;
+  padding: 5px 15px;
   top: 45px;
-  margin-left: -10px;
-  font-size: 12px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-left: -25px;
+  font-size: 15px;
+  border: solid lightgray 1px;
+  box-shadow: rgba(0, 0, 0, 0.64) 0px 3px 8px;
+
 }
 .logout-text:hover{
-  background-color: #E0E0E0;
+  border-color: #4D16BE;
 }
 
 
@@ -147,15 +149,16 @@ width: 100%;
 }
 .imgbox{
   text-align: center;
-  height: 200px;
+
   margin-bottom: 25px;
   border-bottom: solid lightgray 1px;
 }
 
 .modal_field .imgbox img{
   margin: 0 auto;
-  height: 100%;
-  width: auto;
+  height: auto;
+  width: 100%;
+  max-height: 200px;
 }
 
 .modal_field textarea {
@@ -166,6 +169,7 @@ width: 100%;
   font-family: Arial, sans-serif;
   transition: .3s ease-in-out;
   width: 100%;
+  margin-bottom: 10px;
 }
 .modal_field textarea:hover{
   border-color: #2E69FF;
@@ -273,6 +277,10 @@ width: 100%;
 }
 .selected-image-name{
   margin: 0 10px;
+  border: solid red 1px;
+  max-width: 150px;
+  height: 20px; 
+  overflow: hidden;
 }
 .uploading svg{
   margin-right: 10px;

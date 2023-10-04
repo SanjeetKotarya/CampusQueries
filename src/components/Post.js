@@ -380,22 +380,7 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
             </svg>
             <small>{answersCount}</small>
           </a>
-          <a onClick={() => setIsModalOpen(true)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              id="add"
-            >
-              <path
-                fill="#4d16be"
-                d="M17 11h-4V7a1 1 0 0 0-2 0v4H7a1 1 0 0 0 0 2h4v4a1 1 0 0 0 2 0v-4h4a1 1 0 0 0 0-2Z"
-              ></path>
-              <path
-                fill="#b2b1ff"
-                d="M21 2H3a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Zm-4 11h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2Z"
-              ></path>
-            </svg>
-          </a>
+
         </div>
 
         <div className="more">
@@ -425,7 +410,26 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
         </div>
       </div>
       {showAnswers && (
+        
         <div className="answers">
+          <div className="addans" onClick={() => setIsModalOpen(true)}>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              id="add"
+            >
+              <path
+                fill="#4d16be"
+                d="M17 11h-4V7a1 1 0 0 0-2 0v4H7a1 1 0 0 0 0 2h4v4a1 1 0 0 0 2 0v-4h4a1 1 0 0 0 0-2Z"
+              ></path>
+              <path
+                fill="#e2e0fd"
+                d="M21 2H3a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Zm-4 11h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2Z"
+              ></path>
+            </svg>
+
+          </div>
           <div className="answers_container">
             {getAnswer
               .filter((answer) => answer.answers.questionId === id)
@@ -568,8 +572,13 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
         <span>
           <h2>{quoraUser?.userName}</h2>
           <p>{quoraUser?.email}</p>
-          <small>About :</small><br/>
-          <small className="abouttxt">{aboutme || "Nothing here"}</small>
+          <box>
+          <hr/>
+          <small>About</small>
+          <hr/>
+          </box>
+         
+          <p className="abouttxt">{aboutme || "Nothing here"}</p><hr/>
           {canEdit && (
             <React.Fragment>
               {isEditing ? (
@@ -582,10 +591,14 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
                   />
                   {/* Save and Cancel buttons */}
                   <br />
+                  <div className="editbuttons">
                   <button className="save" onClick={handleSaveAbout}>Save</button>
                   <button className="cancel" onClick={handleCancelClick}>Cancel</button>
+                  </div>
+  
                 </React.Fragment>
               ) : (
+                
                 <button className="editbtn" onClick={handleEditClick}>Edit</button>
               )}
             </React.Fragment>

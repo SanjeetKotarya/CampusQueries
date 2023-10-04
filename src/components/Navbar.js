@@ -168,8 +168,8 @@ function Navbar() {
         closeOnEsc
       >
         <div className="modal_title">
-          <h5>Add Question</h5>
-          <h5>Share Link</h5>
+          <h4>Add Question</h4>
+
         </div>
         <div className="modal_info">
           <div className="avatar">

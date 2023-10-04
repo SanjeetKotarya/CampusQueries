@@ -213,9 +213,7 @@
 .modal_question .post_info {
   padding: 10px 0;
 }
-.show_answer:hover {
-    fill: #4d16be;
-  }
+
 .userModalContent{
   margin: 0 auto;
   text-align: center;
@@ -234,25 +232,64 @@
 }
 .userModalContent textarea{
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
   font-family:Georgia, 'Times New Roman', Times, serif;  
   width: 100%; /* Set the width to 100% */
   resize: none; 
+  display: block;
   margin-top: 10px;
   word-wrap: break-word; 
   border: solid lightgray 1px;
+  background-color: whitesmoke;
+}
+.addans{
+  cursor: pointer;
+border-bottom-left-radius: 15px;
+border-bottom-right-radius: 15px;
+  background-color: #e2e0fd;
+  border: solid lightgray 1px;
+}
+
+.addans svg{
+  width: 30px;
+
+}
+.userModalContent box{
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+}
+box small{
+  border: solid lightgray 1px;
+  padding: 2px 5px;
+  border-radius: 30px;
+  font-size: 10px;
+}
+.userModalContent hr{
+  border: none;
+  border-top: solid lightgray 1px;
+  width: 100%;
+  margin: 10px auto;
+}
+
+.editbtn{
+  margin-top: 10px;
+}
+.editbuttons{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .userModalContent button{
   border: none;
   outline: none;
-  margin-top: 10px;
   background-color: white;
-  margin-right: 5px;
   border: solid lightgray 1px;
   cursor: pointer;
-  padding: 5px 15px;
+  padding: 5px 20px;
   border-radius: 30px;
 }
+
 .userModalContent button:hover{
   background-color: rgb(246, 244, 244);
 }
@@ -316,4 +353,9 @@ color: blue;
 .post_body .post-imgbox {
   padding: 0 0;
 }
+  }
+
+  .show_answer svg:hover {
+background-color: rgb(224, 221, 221);
+border-radius: 10px;
   }

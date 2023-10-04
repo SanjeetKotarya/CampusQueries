@@ -16,11 +16,12 @@
 
 .react-responsive-modal-modal {
   border-radius: 15px;
-  min-width: 40%;
+  min-width: 30%;
   min-height: fit-content;
   position: absolute;
   max-height: 80vh;
   margin: 0 auto;
+  max-width: 90%;
 }
 .react-responsive-modal-overlay {
   background: rgb(0 0 0 / 75%);
