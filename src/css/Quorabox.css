@@ -32,7 +32,9 @@
 
 .search-input:hover {
   background-color: rgb(247, 251, 255);
+
 }
+
 .sort{
   background-color: rgb(235, 234, 234);
   border-radius:100%;
@@ -64,9 +66,15 @@
 }
 .mic-button{
   border-radius: 100%;
-  background-color: white;
+  background-color: rgb(229, 229, 229);
   padding: 2px 4px;
+  cursor: pointer;
 }
+.mic-button:hover{
+  background-color: rgb(216, 216, 216);
+  transform: scale(1.03);
+}
+
 
 .sort-options button:hover{
   background-color: rgb(237, 237, 237);

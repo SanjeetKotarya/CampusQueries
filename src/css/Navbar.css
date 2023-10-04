@@ -6,6 +6,7 @@
     top: 0;
     left: 0;
     z-index: 500;
+    font-family: Poppins;
 }
 .logout-text{
   position: absolute;
@@ -15,6 +16,7 @@
   top: 50px;
   margin-left: -18px;
   font-size: 12px;
+  font-family: Poppins;
   border-radius: 30px;
   color: white;
   cursor: pointer;
@@ -86,6 +88,7 @@
   color: white;
   padding: 8px 10px;
   outline: none;
+  font-family: Poppins;
   cursor: pointer;
   font-size: 12px;
   border: none;
@@ -170,7 +173,7 @@ width: 100%;
   outline: none;
   border-bottom: solid lightgray 1px;
   border-top: solid lightgray 1px;
-  font-family: Arial, sans-serif;
+  font-family: Poppins;
   transition: .3s ease-in-out;
   height: 100px;
   width: 100%;
@@ -178,7 +181,7 @@ width: 100%;
   display: block;
   margin-bottom: 10px;
 }
-.modal_field textarea:hover{
+.modal_field textarea:focus{
   border-color: #2E69FF;
 }
 .modal_field input{
