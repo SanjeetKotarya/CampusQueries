@@ -310,6 +310,10 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
     setAboutContent(originalAboutContent); // Revert to the original content
   };
 
+  const handleDoubleClick = async () => {
+    // Call the handleLike function (or implement the like logic directly here)
+    await handleLike();
+  };
   return (
     <div
       className="post"
@@ -339,7 +343,7 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
       <div className="post_body">
         <p>{question}</p>
         {image && (
-          <div className="post-imgbox">
+          <div className="post-imgbox" onDoubleClick={handleDoubleClick}>
             <img src={image} alt="Image" />
           </div>
         )}
