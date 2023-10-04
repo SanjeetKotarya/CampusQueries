@@ -108,8 +108,6 @@
   font-size: 12px;
 }
 
-
-
 .actions svg {
   height: 25px;
   padding: 0;
@@ -143,15 +141,13 @@
   fill: #4d16be;
 }
 
-
 .del-for:hover {
   fill: red;
 }
 .answers {
   border-top: solid lightgray 1px;
-  box-shadow: rgb(215, 215, 215) 0px 3px 6px 0px inset;
   border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px ;
+  border-bottom-right-radius: 15px;
   overflow: hidden;
 }
 .answers .avatar {
@@ -163,7 +159,6 @@
   padding: 10px;
   align-items: center;
   position: relative;
-
 }
 .answer_info span {
   margin: 0 10px;
@@ -212,73 +207,73 @@
   padding: 10px 0;
 }
 
-.userModalContent{
+.userModalContent {
   margin: 0 auto;
   text-align: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
-.abouttxt{
+.abouttxt {
   width: 100%;
   display: block;
-  word-wrap: break-word; 
+  word-wrap: break-word;
 }
 
-.userModalContent img{
+.userModalContent img {
   border-radius: 100%;
 }
-.userModalContent textarea{
+.userModalContent textarea {
   outline: none;
   border-radius: 10px;
-  font-family:Georgia, 'Times New Roman', Times, serif;  
+  font-family: Georgia, "Times New Roman", Times, serif;
   width: 100%; /* Set the width to 100% */
-  resize: none; 
+  resize: none;
   display: block;
   margin-top: 10px;
-  word-wrap: break-word; 
+  word-wrap: break-word;
   border: solid lightgray 1px;
   background-color: whitesmoke;
 }
-.addans{
+.addans {
   cursor: pointer;
-border-bottom-left-radius: 15px;
-border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
   background-color: #eae8e8;
-  box-shadow: rgb(215, 215, 215) 0px 3px 3px 0px ;
+  box-shadow: rgb(215, 215, 215) 0px 3px 3px 0px;
+  border: solid white 1px;
 }
 
-.addans svg{
+.addans svg {
   width: 30px;
-
 }
-.userModalContent box{
+.userModalContent box {
   display: flex;
   margin-top: 10px;
   align-items: center;
 }
-box small{
+box small {
   border: solid lightgray 1px;
   padding: 2px 5px;
   border-radius: 30px;
   font-size: 10px;
 }
-.userModalContent hr{
+.userModalContent hr {
   border: none;
   border-top: solid lightgray 1px;
   width: 100%;
   margin: 10px auto;
 }
 
-.editbtn{
+.editbtn {
   margin-top: 10px;
 }
-.editbuttons{
+.editbuttons {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
-.userModalContent button{
+.userModalContent button {
   border: none;
   outline: none;
   background-color: white;
@@ -288,74 +283,72 @@ box small{
   border-radius: 30px;
 }
 
-.userModalContent button:hover{
+.userModalContent button:hover {
   background-color: rgb(246, 244, 244);
 }
-.userModalContent p{
-  word-wrap: break-word; 
-  font-family: 'Times New Roman', Times, serif;
+.userModalContent p {
+  word-wrap: break-word;
+  font-family: "Times New Roman", Times, serif;
 }
-.userModalContent .save{
-color: blue;
+.userModalContent .save {
+  color: blue;
 }
-.userModalContent .cancel{
+.userModalContent .cancel {
   color: red;
-  }
-  .delconfirm{
-    text-align: center;
-    padding: 10px 10px 0 10px;
-  }
-  .delconfirm button{
-    border: none;
-    outline: none;
-    padding: 10px;
-    width: 100%;
-    font-size: 14px;
-    margin: 0 5px;
-    background-color: white;
-    border-radius: 30px;
-    text-align: center;
-    border: solid lightgray 1px;
-    cursor: pointer;
-  }
-  .delconfirm button:hover{
-    background-color: rgb(245, 245, 245);
-  }
-  .conbuttons{
-    display: flex;
-    margin-top: 20px;
-    justify-content: space-between;
-  }
-
-  .ansdel{
-    position: absolute;
-    right: 10px;
-    cursor: pointer;
-  }
-  .ansdel svg{
-    height: 20px;
-    padding: 2px;
-    width: 20px;
-    fill: red;
-  }
-  @media screen and (max-width: 768px) {
-    .post {
-      margin: 0 10px;
-      margin-bottom: 8px;
-    }
-    .post_body .post-imgbox img {
-      border-radius: 0;
-      border: none;
-    }
-    
-.post_body .post-imgbox {
-  padding: 0 0;
 }
+.delconfirm {
+  text-align: center;
+  padding: 10px 10px 0 10px;
+}
+.delconfirm button {
+  border: none;
+  outline: none;
+  padding: 10px;
+  width: 100%;
+  font-size: 14px;
+  margin: 0 5px;
+  background-color: white;
+  border-radius: 30px;
+  text-align: center;
+  border: solid lightgray 1px;
+  cursor: pointer;
+}
+.delconfirm button:hover {
+  background-color: rgb(245, 245, 245);
+}
+.conbuttons {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.ansdel {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+.ansdel svg {
+  height: 20px;
+  padding: 2px;
+  width: 20px;
+  fill: red;
+}
+@media screen and (max-width: 768px) {
+  .post {
+    margin: 0 10px;
+    margin-bottom: 8px;
+  }
+  .post_body .post-imgbox img {
+    border-radius: 0;
+    border: none;
   }
 
-  .show_answer svg:active {
-background-color: rgb(240, 236, 236);
-border-radius: 10px;
+  .post_body .post-imgbox {
+    padding: 0 0;
   }
+}
 
- 
+.show_answer svg:active {
+  background-color: rgb(240, 236, 236);
+  border-radius: 10px;
+}
