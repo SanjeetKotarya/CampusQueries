@@ -142,27 +142,42 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
       const questionRef = doc(collection(db, "questions"), id);
       const docSnapshot = await getDoc(questionRef);
       const { likedBy } = docSnapshot.data();
-
+  
+      // Update the UI optimistically
+      if (!likedBy || !likedBy.includes(user.uid)) {
+        setLikesCount((prevLikes) => prevLikes + 1);
+        setIsLiked(true);
+      } else {
+        setLikesCount((prevLikes) => prevLikes - 1);
+        setIsLiked(false);
+      }
+  
+      // Perform the database operation in the background
       if (!likedBy || !likedBy.includes(user.uid)) {
         // User has not liked, so add the like
         await updateDoc(questionRef, {
           likedBy: likedBy ? [...likedBy, user.uid] : [user.uid],
         });
-        setLikesCount(likedBy ? likedBy.length + 1 : 1);
-        setIsLiked(true);
       } else {
         // User has already liked, so remove the like
         const updatedLikedBy = likedBy.filter((userId) => userId !== user.uid);
         await updateDoc(questionRef, {
           likedBy: updatedLikedBy,
         });
-        setLikesCount(updatedLikedBy.length);
-        setIsLiked(false);
       }
     } catch (error) {
+      // Handle the error (e.g., show a message to the user)
       console.error("Error updating likes:", error);
+  
+      // Revert the UI to its previous state in case of an error
+      const questionRef = doc(collection(db, "questions"), id);
+      const docSnapshot = await getDoc(questionRef);
+      const { likedBy } = docSnapshot.data();
+      setLikesCount(likedBy ? likedBy.length : 0);
+      setIsLiked(likedBy && likedBy.includes(user.uid));
     }
   };
+  
 
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
 

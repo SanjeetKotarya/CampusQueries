@@ -16,7 +16,7 @@
 
 .react-responsive-modal-modal {
   border-radius: 15px;
-  min-width: 30%;
+  min-width: 40%;
   min-height: fit-content;
   position: absolute;
   max-height: 80vh;
