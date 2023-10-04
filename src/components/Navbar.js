@@ -90,6 +90,7 @@ function Navbar() {
         timestamp: serverTimestamp(),
         likes: 0,
         likedBy: [],
+        about:"",
       });
 
       console.log("Document written with ID: ", docRef.id);
