@@ -4,12 +4,13 @@ import Navbar from "./Navbar";
 import Feed from "./Feed";
 
 
+
 function Quora() {
 
 
   return (
     <div className="quora">
-      
+      <fluid />
       <Navbar/>
       <div className="quora-contents">
         <div className="quora-content">

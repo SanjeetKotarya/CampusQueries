@@ -126,7 +126,7 @@ function Feed() {
             onClick={() => handleSort("likedBy")}
             className={activeSort === "likedBy" ? "active" : ""}
           >
-            No. of likes
+            Popular
           </button>
         </div>
 
