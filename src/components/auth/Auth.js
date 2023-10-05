@@ -1,6 +1,6 @@
 import React from "react";
 import "./Auth.css";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, signInAnonymously  } from "firebase/auth";
 import { auth, provider } from "../../firebase";
 
 function Auth() {
@@ -12,6 +12,16 @@ function Auth() {
       console.error("Google Sign-In Error:", error);
     }
   };
+
+
+  const handleAnonymousSignIn = async () => {
+    try {
+      await signInAnonymously(auth);
+    } catch (error) {
+      console.error("Anonymous Sign-In Error:", error);
+    }
+  };
+
 
   return (
     <div className="login">
@@ -31,7 +41,15 @@ function Auth() {
                 src="https://media-public.canva.com/MADnBiAubGA/3/screen.svg"
                 alt=""
               />
-              <p onClick={handleGoogleSignIn}>Continue With Google</p>
+              <p onClick={handleGoogleSignIn}>Login With Google</p>
+            </div>
+            <div className="login__authOption">
+              <img
+                className="login__googleAuth"
+                src="https://cdn-icons-png.flaticon.com/512/634/634741.png"
+                alt=""
+              />
+              <p onClick={handleAnonymousSignIn}>Login as Nobody</p>
             </div>
 
             <div className="login__authDesc">

@@ -15,21 +15,7 @@ function Feed() {
 
   const handleSort = (newSortBy) => {
     setSortBy(newSortBy);
-  };
-
-  const handleYourPosts = () => {
-    setSortBy("yourPosts"); // Update the sortBy state to a custom value
-
-    // Fetch posts and filter based on the logged-in user's ID
-    const filteredPosts = posts.filter(
-      ({ question }) => question.user.uid === user.uid
-    );
-
-    // Sort the filtered posts by timestamp in descending order
-    filteredPosts.sort((a, b) => b.question.timestamp - a.question.timestamp);
-
-    // Set the sorted and filtered posts to the state
-    setPosts(filteredPosts);
+    setActiveSort(newSortBy);
   };
 
   useEffect(() => {
@@ -76,27 +62,53 @@ function Feed() {
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
+
+  // ...
+
+  const filteredPosts = posts.filter(({ question }) => {
+    if (!question) {
+      return false; // Skip undefined questions
+    }
+
+    const lowerCaseQuery = searchQuery.toLowerCase();
+    const lowerCaseQuestion = (question.question || "").toLowerCase();
+    const lowerCaseUserName = (question.user?.userName || "").toLowerCase();
+
+    // Check if the question or the user's name includes the search query
+    return (
+      lowerCaseQuestion.includes(lowerCaseQuery) ||
+      lowerCaseUserName.includes(lowerCaseQuery)
+    );
+  });
+
+  const [activeSort, setActiveSort] = useState("timestamp");
+  const [yourPostsActive, setYourPostsActive] = useState(false);
+
+  const handleYourPosts = () => {
+    if (yourPostsActive) {
+      // If already active, reset the state
+      setSortBy("timestamp"); // Reset to a default value or the desired initial state
+      setYourPostsActive(false);
+    } else {
+      // If not active, set the state
+      setSortBy("yourPosts");
+      setYourPostsActive(true);
   
-// ...
-
-const filteredPosts = posts.filter(({ question }) => {
-  if (!question) {
-    return false; // Skip undefined questions
-  }
-
-  const lowerCaseQuery = searchQuery.toLowerCase();
-  const lowerCaseQuestion = (question.question || '').toLowerCase();
-  const lowerCaseUserName = (question.user?.userName || '').toLowerCase();
-
-  // Check if the question or the user's name includes the search query
-  return (
-    lowerCaseQuestion.includes(lowerCaseQuery) ||
-    lowerCaseUserName.includes(lowerCaseQuery)
-  );
-});
-
-// ...
-
+      // Fetch posts and filter based on the logged-in user's ID
+      const filteredPosts = posts.filter(
+        ({ question }) => question.user.uid === user.uid
+      );
+  
+      // Sort the filtered posts by timestamp in descending order
+      filteredPosts.sort((a, b) => b.question.timestamp - a.question.timestamp);
+  
+      // Set the sorted and filtered posts to the state
+      setPosts(filteredPosts);
+  
+      // Reset other button states
+      setActiveSort(null);
+    }
+  };
 
   return (
     <div className="feed">
@@ -104,12 +116,26 @@ const filteredPosts = posts.filter(({ question }) => {
       <div className="render">
         <div className="sorting-buttons">
           <p>Sort by : </p>
-          <button onClick={() => handleSort("timestamp")}>
-            Date
+          <button
+            onClick={() => handleSort("timestamp")}
+            className={activeSort === "timestamp" ? "active" : ""}
+          >
+            Latest
           </button>
-          <button onClick={() => handleSort("likedBy")}>Most Liked</button>
+          <button
+            onClick={() => handleSort("likedBy")}
+            className={activeSort === "likedBy" ? "active" : ""}
+          >
+            No. of likes
+          </button>
         </div>
-        <button onClick={handleYourPosts} className="yourposts">My Posts</button>
+
+        <button
+  onClick={handleYourPosts}
+  className={`yourposts ${yourPostsActive ? "active" : ""}`}
+>
+  {yourPostsActive ? "All" : "My Posts"}
+</button>
       </div>
       {searchQuery === "" ? (
         posts.map(({ id, question }) => (

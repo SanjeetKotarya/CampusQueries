@@ -331,7 +331,12 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
           <img src={quoraUser?.photo} />
         </div>
         <span>
-          <h4>{quoraUser?.userName}</h4>
+
+        {quoraUser && (
+  <h4>{quoraUser.isAnonymous ? "Anonymous" : quoraUser.userName}</h4>
+)}
+
+
           <p>{quoraUser?.email}</p>
         </span>
         <small>
