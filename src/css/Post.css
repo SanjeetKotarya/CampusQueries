@@ -353,7 +353,7 @@ box small {
 }
 @media screen and (max-width: 768px) {
   .post {
-    margin: 0 10px;
+    margin: 0 8px;
     margin-bottom: 8px;
   }
   .post_body .post-imgbox img {
