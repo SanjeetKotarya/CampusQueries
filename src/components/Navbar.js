@@ -88,7 +88,7 @@ function Navbar() {
         imageUrl: inputUrl,
         user: user,
         timestamp: serverTimestamp(),
-        likes: 0,
+
         likedBy: [],
         about: "",
       });

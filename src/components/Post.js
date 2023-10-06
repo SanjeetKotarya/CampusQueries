@@ -142,7 +142,7 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
       const questionRef = doc(collection(db, "questions"), id);
       const docSnapshot = await getDoc(questionRef);
       const { likedBy } = docSnapshot.data();
-  
+
       // Update the UI optimistically
       if (!likedBy || !likedBy.includes(user.uid)) {
         setLikesCount((prevLikes) => prevLikes + 1);
@@ -151,7 +151,7 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
         setLikesCount((prevLikes) => prevLikes - 1);
         setIsLiked(false);
       }
-  
+
       // Perform the database operation in the background
       if (!likedBy || !likedBy.includes(user.uid)) {
         // User has not liked, so add the like
@@ -168,7 +168,7 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
     } catch (error) {
       // Handle the error (e.g., show a message to the user)
       console.error("Error updating likes:", error);
-  
+
       // Revert the UI to its previous state in case of an error
       const questionRef = doc(collection(db, "questions"), id);
       const docSnapshot = await getDoc(questionRef);
@@ -177,7 +177,6 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
       setIsLiked(likedBy && likedBy.includes(user.uid));
     }
   };
-  
 
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
 
@@ -262,8 +261,6 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
     setAbout(aboutContent);
   }, [aboutContent]);
 
-
-
   const handleSaveAbout = async () => {
     try {
       console.log("About Content Before Update:", aboutContent);
@@ -293,11 +290,11 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
     } catch (error) {
       console.error("Error updating about field:", error);
     }
-    setIsEditing(false); 
+    setIsEditing(false);
   };
 
   const [isEditing, setIsEditing] = useState(false);
-  const [originalAboutContent, setOriginalAboutContent] = useState('');
+  const [originalAboutContent, setOriginalAboutContent] = useState("");
   // ... your other state variables and functions
 
   const handleEditClick = () => {
@@ -331,11 +328,9 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
           <img src={quoraUser?.photo} />
         </div>
         <span>
-
-        {quoraUser && (
-  <h4>{quoraUser.isAnonymous ? "Anonymous" : quoraUser.userName}</h4>
-)}
-
+          {quoraUser && (
+            <h4>{quoraUser?.userName}</h4>
+          )}
 
           <p>{quoraUser?.email}</p>
         </span>
@@ -404,7 +399,6 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
             </svg>
             <small>{answersCount}</small>
           </a>
-
         </div>
 
         <div className="more">
@@ -434,10 +428,8 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
         </div>
       </div>
       {showAnswers && (
-        
         <div className="answers">
           <div className="addans" onClick={() => setIsModalOpen(true)}>
-
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -448,11 +440,10 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
                 d="M17 11h-4V7a1 1 0 0 0-2 0v4H7a1 1 0 0 0 0 2h4v4a1 1 0 0 0 2 0v-4h4a1 1 0 0 0 0-2Z"
               ></path>
               <path
-                fill="#eae8e8"
+                fill="transparent"
                 d="M21 2H3a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Zm-4 11h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2Z"
               ></path>
             </svg>
-
           </div>
           <div className="answers_container">
             {getAnswer
@@ -579,57 +570,61 @@ function Post({ id, question, image, time, quoraUser, searchQuery, about }) {
 
       {/* User Avatar Modal */}
       <Modal
-      open={isUserModalOpen}
-      closeIcon={Close}
-      onClose={() => {
-        setIsUserModalOpen(false);
-        setIsEditing(false); // Reset the editing state when the modal is closed
-      }}
-      center
-      closeOnOverlayClick
-      closeOnEsc
-    >
-      <div className="userModalContent">
-        <span>
-          <img src={quoraUser?.photo} alt="User Avatar" />
-        </span>
-        <span>
-          <h2>{quoraUser?.userName}</h2>
-          <p>{quoraUser?.email}</p>
-          <box>
-          <hr/>
-          <small>About</small>
-          <hr/>
-          </box>
-         
-          <p className="abouttxt">{aboutme || "Nothing here"}</p><hr/>
-          {canEdit && (
-            <React.Fragment>
-              {isEditing ? (
-                <React.Fragment>
-                  
-                  <textarea
-                    placeholder="Write about yourself"
-                    value={aboutContent}
-                    onChange={(e) => setAboutContent(e.target.value)}
-                  />
-                  {/* Save and Cancel buttons */}
-                  <br />
-                  <div className="editbuttons">
-                  <button className="save" onClick={handleSaveAbout}>Save</button>
-                  <button className="cancel" onClick={handleCancelClick}>Cancel</button>
-                  </div>
-  
-                </React.Fragment>
-              ) : (
-                
-                <button className="editbtn" onClick={handleEditClick}>Edit</button>
-              )}
-            </React.Fragment>
-          )}
-        </span>
-      </div>
-    </Modal>
+        open={isUserModalOpen}
+        closeIcon={Close}
+        onClose={() => {
+          setIsUserModalOpen(false);
+          setIsEditing(false); // Reset the editing state when the modal is closed
+        }}
+        center
+        closeOnOverlayClick
+        closeOnEsc
+      >
+        <div className="userModalContent">
+          <span>
+            <img src={quoraUser?.photo} alt="User Avatar" />
+          </span>
+          <span>
+            <h2>{quoraUser?.userName}</h2>
+            <p>{quoraUser?.email}</p>
+            <box>
+              <hr />
+              <small>About</small>
+              <hr />
+            </box>
+
+            <p className="abouttxt">{aboutme || "Nothing here"}</p>
+            <hr />
+            {canEdit && (
+              <React.Fragment>
+                {isEditing ? (
+                  <React.Fragment>
+                    <textarea
+                      placeholder="Write about yourself"
+                      value={aboutContent}
+                      onChange={(e) => setAboutContent(e.target.value)}
+                    />
+                    {/* Save and Cancel buttons */}
+                    <br />
+                    <div className="editbuttons">
+                      <button className="save" onClick={handleSaveAbout}>
+                        Save
+                      </button>
+                      <button className="cancel" onClick={handleCancelClick}>
+                        Cancel
+                      </button>
+                    </div>
+                  </React.Fragment>
+                ) : (
+                  <button className="editbtn" onClick={handleEditClick}>
+                    Edit
+                  </button>
+                )}
+              </React.Fragment>
+            )}
+          </span>
+        </div>
+      </Modal>
 
       {/* ... (rest of the component) */}
     </div>

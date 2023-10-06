@@ -220,9 +220,7 @@ width: 100%;
   font-family: Poppins;
   cursor: pointer;
 }
-.modal_scop:hover{
-  background-color: #F7F7F7;
-}
+
 .modal_scop svg{
   width: 16px;
   fill: #636466;

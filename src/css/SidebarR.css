@@ -1,0 +1,15 @@
+.sidebarR{
+    width: 250px;
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: white;
+    height: fit-content;
+    min-height: 300px;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebarR{
+        display: none;
+    }
+}
