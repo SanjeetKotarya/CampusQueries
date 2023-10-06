@@ -229,6 +229,7 @@
 .abouttxt {
   width: 100%;
   display: block;
+  margin: 0 auto;
   word-wrap: break-word;
 }
 
@@ -237,7 +238,6 @@
 }
 .userModalContent textarea {
   outline: none;
-  border-radius: 10px;
   width: 100%; /* Set the width to 100% */
   resize: none;
   display: block;
@@ -245,7 +245,6 @@
   word-wrap: break-word;
   font-family: Poppins;
   border: solid lightgray 1px;
-  background-color: whitesmoke;
 }
 .addans {
   cursor: pointer;

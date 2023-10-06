@@ -7,14 +7,14 @@
   margin: 0 auto;
   position: fixed;
   top: 12px;
-  left: 0;
+  left: 42%;
   z-index: 500;
-  width: 100%;
+  width: fit-content;
 }
 .search-input {
   width: fit-content;
   display: flex;
-  background-color: white;
+  background-color: #dfe0e5;
   font-family: Poppins;
   align-items: center;
   margin: 0 auto;
@@ -22,13 +22,15 @@
   border-radius: 30px; /* Adjust the border-radius to control the roundness of the input */
   font-size: 12px;
   padding: 2px 5px;
+  width: fit-content;
 }
+
 
 .search-input input {
   border: none;
   outline: none;
   background-color: transparent;
-  width: 120px;
+  width: 150px;
   padding: 6px;
 }
 
@@ -86,19 +88,23 @@
   .quorabox {
     position: fixed;
     width: 100%;
-    background-color: #0E161B;
+    background-color: black;
     border-radius: 0;
-
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
     border: none;
     padding-top: 2px;
     top: 45px;
     padding-bottom: 10px;
     padding-top: 5px;
+    left: 0;
 
   }
   .search-input {
     width: 90%;
   }
 
-
+  .search-input input {
+    width: 100%;
+  }
 }

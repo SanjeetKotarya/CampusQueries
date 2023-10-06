@@ -37,6 +37,7 @@
     border: solid lightgray 1px;
     font-family: Poppins;
     border-radius: 30px;
+    
     padding: 5px 8px;
     font-size: 10px;
     margin: 0 2px;
@@ -50,7 +51,7 @@
   }
   /* Add this to your CSS file */
 .active {
-  background-color: #007bff; /* Change this to your desired active color */
+  font-weight: bold;
   color: #4D16BE; /* Change this to your desired active text color */
 }
 
