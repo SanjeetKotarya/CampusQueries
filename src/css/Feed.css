@@ -1,7 +1,7 @@
 .feed{
     display: inline-block;
     box-sizing: border-box;
-    width: 500px;
+    width: 550px;
     font-family: Poppins;
 }
 
@@ -18,17 +18,15 @@
     background-color: white;
     border: solid lightgray 1px;
     margin-bottom: 10px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-radius: 30px;
     justify-content: space-between;
+    
   }
   .sorting-buttons{
     display: flex;
     align-items: center;
   }
-.pinned{
-  border: solid red 1px;
-}
+
 
 
   .sorting-buttons button{
@@ -76,13 +74,10 @@
 
 @media screen and (max-width: 768px) {
   .render{
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-color:transparent ;
+
     margin: 0 10px;
     margin-top: 5px;
     margin-bottom: 10px;
-    border: none;
   }
   .feed{
     width: 100%;

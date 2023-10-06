@@ -16,9 +16,9 @@ function Quora() {
       <Navbar/>
       <div className="quora-contents">
         <div className="quora-content">
-          <SidebarL/>
+          
           <Feed />
-          <SidebarR/>
+          
         </div>
       </div>
     </div>

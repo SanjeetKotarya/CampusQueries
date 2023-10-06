@@ -1,12 +1,28 @@
 .Navbar{
     width: 100%;
-    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.5);
-    background-color: #0E161B;
     position: fixed;
-    top: 0;
+    top: 7px;
     left: 0;
     z-index: 500;
     font-family: Poppins;
+    background-color: transparent;
+}
+
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 5px;
+  box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 1);
+  border-radius: 30px;
+  width: 580px;
+  background: black;
+  backdrop-filter: blur(5px);
+  margin: 0 auto;
+  position: sticky;
+  z-index: 1000;
+
 }
 .logout-text{
   position: absolute;
@@ -30,18 +46,6 @@
 }
 
 
-
-.nav-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2px 5px;
-  width: 40%;
-  margin: 0 auto;
-  position: sticky;
-  z-index: 1000;
-  top: 0;
-}
 
 .nav-icons {
   display: flex;
@@ -69,8 +73,7 @@
   color: white;
   font-weight: bold;
   text-decoration: none;
- 
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .user{
@@ -310,10 +313,14 @@ width: 100%;
 }
 
 @media screen and (max-width: 768px) {
-
+  .Navbar{
+    top: 0;
+}
   .nav-content {
     justify-content: space-between;
-    width: 95%;
+    width: 100%;
+    border-radius: 0;
+    padding: 2px 5px;
   }
 
   .nav-content .logo a {

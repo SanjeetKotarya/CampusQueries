@@ -1,26 +1,18 @@
 .quorabox {
-  margin-top: 10px;
-  background-color: white;
+  margin-top: -50px;
   padding: 5px 0;
-  box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.5);
   z-index: 200;
-  border: solid lightgray 1px;
   border-bottom-color: transparent;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
   font-family: Poppins;
+  margin: 0 auto;
+  position: fixed;
+  top: 12px;
+  left: 0;
+  z-index: 500;
+  width: 100%;
 }
-
-.search-input input {
-  border: none;
-  outline: none;
-  background-color: transparent;
-  padding: 6px;
-}
-
-
 .search-input {
-  width: 90%;
+  width: fit-content;
   display: flex;
   background-color: white;
   font-family: Poppins;
@@ -28,14 +20,21 @@
   margin: 0 auto;
   border: 1px solid #ccc;
   border-radius: 30px; /* Adjust the border-radius to control the roundness of the input */
-  padding: 3px ;
   font-size: 12px;
+  padding: 2px 5px;
 }
 
-.search-input:hover {
-  background-color: rgb(247, 251, 255);
-
+.search-input input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 120px;
+  padding: 6px;
 }
+
+
+
+
 
 .sort{
   background-color: rgb(235, 234, 234);
@@ -70,8 +69,6 @@
   border-radius: 100%;
   display: flex;
   align-items: center;
-  background-color: rgb(229, 229, 229);
-  padding: 6px;
   cursor: pointer;
 }
 
@@ -88,15 +85,20 @@
 @media screen and (max-width: 768px) {
   .quorabox {
     position: fixed;
-    margin-top: -49px;
     width: 100%;
     background-color: #0E161B;
     border-radius: 0;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+
     border: none;
     padding-top: 2px;
-    
+    top: 45px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+
   }
+  .search-input {
+    width: 90%;
+  }
+
 
 }
