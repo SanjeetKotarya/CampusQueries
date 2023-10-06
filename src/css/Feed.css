@@ -20,6 +20,7 @@
     margin-bottom: 10px;
     border-radius: 30px;
     justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   }
   .sorting-buttons{
     display: flex;
@@ -35,6 +36,7 @@
     cursor: pointer;
     border: solid lightgray 1px;
     font-family: Poppins;
+
     border-radius: 30px;
     
     padding: 5px 8px;

@@ -356,6 +356,7 @@ box small {
   .post {
     margin: 0 10px;
     margin-bottom: 8px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   }
   .post_body .post-imgbox img {
     border-radius: 0;
