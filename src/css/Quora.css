@@ -1,6 +1,6 @@
 
 .quora-content {
-  width: 100%;
+  width: fit-content;
   margin: 0 auto;
   margin-top: 70px;
   display: flex;
