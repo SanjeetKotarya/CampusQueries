@@ -143,7 +143,7 @@ function Navbar() {
       <div className="nav-content">
         <div className="logo">
           <a href="#">
-            <img src="https://firebasestorage.googleapis.com/v0/b/quora-iitm.appspot.com/o/images%2F5jc43zPph5N5ao8zVS7LY7Gc0zz1%2F1696621701453_undefined?alt=media&token=5b5947d7-f574-4579-b9d7-1ac6cf9e182b"/>
+            <h2>CQ</h2>
           </a>
         </div>
 
