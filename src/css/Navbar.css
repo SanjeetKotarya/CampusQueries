@@ -7,16 +7,8 @@
     font-family: Poppins;
     background-color: transparent;
 }
-.logo{
-  align-items: center;
-  justify-content: center;
-margin-left: 10px;
-}
-.logo img{
-  height: 35px;
-  display: block;
-  width: auto;
-}
+
+
 .nav-content {
   display: flex;
   justify-content: space-between;
@@ -319,7 +311,12 @@ width: 100%;
   margin-right: 10px;
   cursor: pointer;
 }
-
+.logo img{
+  margin-left: 10px;
+  height: 30px;
+  display: block;
+  width: auto;
+}
 @media screen and (max-width: 768px) {
   .Navbar{
     top: 0;
@@ -332,10 +329,7 @@ width: 100%;
     padding: 2px 5px;
   }
 
-  .nav-content .logo a {
-    margin-right: 10px;
-    font-size: 18px;
-  }
+
   .user button {
     border-radius: 30px;
     color: white;
