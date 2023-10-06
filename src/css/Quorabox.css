@@ -7,14 +7,14 @@
   margin: 0 auto;
   position: fixed;
   top: 12px;
-  left: 42%;
+  left: 43%;
   z-index: 500;
   width: fit-content;
 }
 .search-input {
   width: fit-content;
   display: flex;
-  background-color: #dfe0e5;
+  background-color: white;
   font-family: Poppins;
   align-items: center;
   margin: 0 auto;
