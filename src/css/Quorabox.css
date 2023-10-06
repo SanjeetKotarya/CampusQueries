@@ -7,7 +7,7 @@
   margin: 0 auto;
   position: fixed;
   top: 12px;
-  left: 43%;
+  left: 42%;
   z-index: 500;
   width: fit-content;
 }
@@ -30,7 +30,7 @@
   border: none;
   outline: none;
   background-color: transparent;
-  width: 120px;
+  width: 150px;
   padding: 6px;
 }
 
