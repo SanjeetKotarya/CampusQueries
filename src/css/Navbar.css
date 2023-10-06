@@ -7,10 +7,14 @@
     font-family: Poppins;
     background-color: transparent;
 }
-
+.logo{
+  align-items: center;
+  justify-content: center;
+margin-left: 10px;
+}
 .logo img{
-  display: block;
   height: 35px;
+  display: block;
   width: auto;
 }
 .nav-content {
