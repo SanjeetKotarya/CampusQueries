@@ -3,6 +3,7 @@
   box-sizing: border-box;
   width: 650px;
   font-family: Poppins;
+  z-index: 800;
 }
 
 .sorry {
@@ -19,18 +20,17 @@
   margin-bottom: 10px;
   border-radius: 30px;
   justify-content: space-between;
-
 }
 .sorting-buttons {
   display: flex;
   align-items: center;
 }
 
-.sorting-buttons button {
+.sortbtn {
   outline: none;
   border: none;
   cursor: pointer;
-  border: solid lightgray 1px;
+  border: solid rgb(52, 52, 52) 1px;
   font-family: Poppins;
   color: white;
   border-radius: 30px;
@@ -45,11 +45,6 @@
   color: white;
 }
 /* Add this to your CSS file */
-.active {
-  font-weight: bold;
-  color: #4d16be; /* Change this to your desired active text color */
-  background-color: #4d16be;
-}
 
 .yourposts {
   outline: none;
@@ -58,19 +53,20 @@
   background-color: transparent;
 color: white;
   border: none;
-  border: solid lightgray 1px;
+  border: solid rgb(52, 52, 52) 1px;
   border-radius: 30px;
   padding: 5px 10px;
   font-size: 10px;
   margin: 0 2px;
 }
 
-.render button:active {
+.active {
+  font-weight: bold;
   background-color: #4d16be;
-  color: white;
 }
 
 @media screen and (max-width: 768px) {
+
   .render {
     margin: 0 8px;
     margin-top: 5px;
@@ -79,4 +75,22 @@ color: white;
   .feed {
     width: 100%;
   }
+  .render {
+    background-color: white;
+  }
+  .yourposts {
+    color: black;
+  }
+  .sortbtn {
+    color: black;
+  }
+  .sorting-buttons p {
+    color: black;
+  }
+  .active {
+    font-weight: bold;
+    color: white;
+    background-color: black;
+  }
+  
 }

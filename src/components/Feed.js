@@ -118,14 +118,14 @@ function Feed() {
           <p>Sort by : </p>
           <button
             onClick={() => handleSort("timestamp")}
-            className={activeSort === "timestamp" ? "active" : ""}
+            className={`sortbtn ${activeSort === "timestamp" ? "active" : ""}`}
           >
             Latest
           </button>
           <button
             onClick={() => handleSort("likedBy")}
-            className={activeSort === "likedBy" ? "active" : ""}
-          >
+            className={`sortbtn ${activeSort === "likedBy" ? "active" : ""}`}
+            >
             Popular
           </button>
         </div>
@@ -134,7 +134,7 @@ function Feed() {
   onClick={handleYourPosts}
   className={`yourposts ${yourPostsActive ? "active" : ""}`}
 >
-  {yourPostsActive ? "All" : "My Posts"}
+  My Posts
 </button>
       </div>
       {searchQuery === "" ? (

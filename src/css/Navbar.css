@@ -3,7 +3,7 @@
     position: fixed;
     top: 7px;
     left: 0;
-    z-index: 500;
+    z-index: 1000;
     font-family: Poppins;
     background-color: transparent;
 }
@@ -19,8 +19,6 @@
   background: black;
   margin: 0 auto;
   position: sticky;
-  z-index: 1000;
-
 }
 .logout-text{
   position: absolute;
@@ -318,7 +316,6 @@ width: 100%;
 @media screen and (max-width: 768px) {
   .Navbar{
     top: 0;
-    z-index: 1000;
 }
   .nav-content {
     justify-content: space-between;

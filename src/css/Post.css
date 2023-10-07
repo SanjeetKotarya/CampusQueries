@@ -6,7 +6,6 @@
   margin-bottom: 10px;
   transition: all 0.2s ease-in-out;
   font-family: Poppins;
-
 }
 
 .post_info {
@@ -355,7 +354,10 @@ box small {
   .post {
     margin: 0 8px;
     margin-bottom: 8px;
+    box-shadow: -2px -2px 5px white, 2px 2px 5px #BABECC;
+    border: solid lightgray 1px;
   }
+
   .post_body .post-imgbox img {
     border-radius: 0;
     border: none;
