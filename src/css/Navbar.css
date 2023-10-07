@@ -16,9 +16,9 @@
   padding: 5px 5px;
   border-radius: 30px;
   width: 650px;
-  background: black;
   margin: 0 auto;
   position: sticky;
+  background-color: black;
 }
 .logout-text{
   position: absolute;
