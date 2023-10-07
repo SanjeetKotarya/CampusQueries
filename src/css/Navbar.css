@@ -307,9 +307,12 @@ width: 100%;
   margin-right: 10px;
   cursor: pointer;
 }
+.logo{
+  position: relative;
+}
 .logo img{
   margin-left: 10px;
-  height: 30px;
+  height: 35px;
   display: block;
   width: auto;
 }
