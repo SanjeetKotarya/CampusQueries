@@ -143,7 +143,7 @@ function Navbar() {
       <div className="nav-content">
         <div className="logo">
           <a href="#">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj1vyRUZh5LOskL3f8EgiRCrFcf9ER1YOa3o6qqC3tHCU8sslrZBlm5NnMCdNrRoyaITzGmuB0AFth6TUltAftx9K1F0YN2a9u27PxNYmDUi2Zo6OwiMugZFsdC0z3q57XlHoI8zjri2wsxhtn-gEtVmzRwuTrELMF21cZAMxL-rvWcIlO39VjNXP4ZhQY/s1600/SDF.png"/>
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9WLnhr7oBpveOBrpRd9uu-Wv_baw6zpKuQIonI2Ff_FSCS3vrZRytUpQKYnnE32J-pZNxvsanQx4vPfpwC3sRiol0AOE3H6BnoZSqQkwpdc1DQaltPDgbE9qLa4V4KRNCw16ivIFhiPODTmdeyNjCOeMaGYAQUyeVleiWSlS3t6PF0QvH4GQ0N1KHb0o/s1600/logo.png"/>
           </a>
         </div>
 
